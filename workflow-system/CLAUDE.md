@@ -6,5 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is an AI Multi-Agent Workflow System designed to transform AI workflows into smart, multi-team systems supporting Engineering, Product Management, Business Intelligence, and other departments through specialized agents and dynamic customization.
 
-## Conversation Instructions
-- MUST follow @./.cursor/rules/workflow.mdc
+## Instructions
+
+**MUST follow @workflow-system/rules.md**
+
+All workflow logic, phases, rules, and instructions are defined in `workflow-system/rules.md`.

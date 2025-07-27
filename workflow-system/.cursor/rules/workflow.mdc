@@ -1,0 +1,9 @@
+---
+description: AI Multi-Agent Workflow System
+globs: 
+alwaysApply: true
+--- 
+
+# MUST follow @workflow-system/rules.md
+
+All workflow logic, phases, rules, and instructions are defined in `workflow-system/rules.md`.
