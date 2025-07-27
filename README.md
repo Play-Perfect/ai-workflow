@@ -127,73 +127,55 @@ your-project/
 
 ```mermaid
 graph TD
-    A[🚀 User Request] --> B{🔧 INIT Phase}
+    A[🚀 User Request] --> B[🔧 INIT Phase]
+    
     B --> B1[Check Configuration]
-    B --> B2[User Onboarding]
-    B --> B3[Project Analysis]
-    B1 --> C[🔍 ANALYZE Phase]
-    B2 --> C
-    B3 --> C
+    B1 --> B2[User Onboarding]
+    B2 --> B3[Project Analysis]
+    B3 --> B4[Session Creation]
     
-    C --> C1[📊 Dev-Analyzer<br/>Technical Context]
-    C --> C2[📋 PM-Analyzer<br/>Requirements]
-    C --> C3[📈 BI-Analyzer<br/>Data Context]
-    C --> C4[🔧 DevOps-Analyzer<br/>Infrastructure]
-    C --> C5[🎨 Design-Analyzer<br/>User Research]
-    C --> C6[⚙️ QA-Analyzer<br/>Test Requirements]
+    B4 --> C[🔍 ANALYZE Phase]
     
-    C1 --> D[📝 BLUEPRINT Phase]
-    C2 --> D
-    C3 --> D
-    C4 --> D
-    C5 --> D
-    C6 --> D
+    C --> C1[Select Analyzer Agent]
+    C1 --> C2[Auto-Query Jira Tickets]
+    C2 --> C3[Search Confluence Docs]
+    C3 --> C4[Gather Context & Requirements]
     
-    D --> D1[⚙️ Dev-Blueprinter<br/>System Design]
-    D --> D2[📋 PM-Blueprinter<br/>PRD Creation]
-    D --> D3[📊 BI-Blueprinter<br/>Analysis Plan]
-    D --> D4[🔧 DevOps-Blueprinter<br/>Infrastructure Plan]
-    D --> D5[🎨 Design-Blueprinter<br/>UX Planning]
-    D --> D6[⚙️ QA-Blueprinter<br/>Test Strategy]
+    C4 --> D[📝 BLUEPRINT Phase]
     
-    D --> D7[✅ User Approval]
-    D7 --> E[🔨 CONSTRUCT Phase]
+    D --> D1[Select Blueprinter Agent]
+    D1 --> D2[Create Implementation Plan]
+    D2 --> D3[Present Plan to User]
+    D3 --> D4[✅ User Approval]
+    D4 --> D5[Generate Jira Sub-tasks]
     
-    E --> E1[💻 Dev-Constructor<br/>Implementation]
-    E --> E2[📝 PM-Constructor<br/>Documentation]
-    E --> E3[📊 BI-Constructor<br/>Analysis Execution]
-    E --> E4[🔧 DevOps-Constructor<br/>Infrastructure Setup]
-    E --> E5[🎨 Design-Constructor<br/>Asset Creation]
-    E --> E6[⚙️ QA-Constructor<br/>Test Implementation]
+    D5 --> E[🔨 CONSTRUCT Phase]
     
-    E1 --> F[🧪 VALIDATE Phase]
-    E2 --> F
-    E3 --> F
-    E4 --> F
-    E5 --> F
-    E6 --> F
+    E --> E1[Select Constructor Agent]
+    E1 --> E2[Execute Implementation]
+    E2 --> E3[Real-time Progress Tracking]
+    E3 --> E4[Update Jira Sub-tasks]
     
-    F --> F1[🔍 Dev-Validator<br/>Quality Assurance]
-    F --> F2[👥 PM-Validator<br/>Requirements Check]
-    F --> F3[📊 BI-Validator<br/>Data Validation]
-    F --> F4[🔧 DevOps-Validator<br/>Performance Testing]
-    F --> F5[🎨 Design-Validator<br/>Design Review]
-    F --> F6[⚙️ QA-Validator<br/>Quality Validation]
+    E4 --> F[🧪 VALIDATE Phase]
     
-    F1 --> G[🎉 Completion]
-    F2 --> G
-    F3 --> G
-    F4 --> G
-    F5 --> G
-    F6 --> G
+    F --> F1[Select Validator Agent]
+    F1 --> F2[Quality Assurance & Testing]
+    F2 --> F3[Create Documentation]
+    F3 --> F4[Final Validation]
     
-    G --> G1[📚 Confluence Docs]
+    F4 --> G[🎉 Completion]
+    
+    G --> G1[📚 Confluence Summary]
     G --> G2[💬 Slack Notifications]
-    G --> G3[📊 Measurements Archive]
+    G --> G3[📊 Archive Measurements]
     
     style A fill:#e1f5fe
     style G fill:#e8f5e8
-    style D7 fill:#fff3e0
+    style D4 fill:#fff3e0
+    style C1 fill:#f3e5f5
+    style D1 fill:#f3e5f5
+    style E1 fill:#f3e5f5
+    style F1 fill:#f3e5f5
 ```
 
 ### 🤝 Cross-Department Agent Collaboration
@@ -233,17 +215,6 @@ System: "✅ Added to VALIDATE phase in Development Agent"
 - **Confluence**: Documentation search, session summary creation
 - **Slack**: Completion notifications with time tracking and results
 - **Custom MCPs**: Extensible through Model Context Protocol servers
-
-## 🎯 Agent Architecture Matrix
-
-| Department | Analyzer | Blueprinter | Constructor | Validator |
-|------------|----------|-------------|-------------|-----------|
-| **Development** | Technical context gathering | System design & architecture | Code implementation | Quality assurance |
-| **Product Management** | Requirements gathering | PRD creation & planning | Documentation coordination | Requirements validation |
-| **Business Intelligence** | Data source identification | Analysis methodology | Report creation | Data validation |
-| **DevOps** | Infrastructure assessment | CI/CD design | Pipeline implementation | Performance validation |
-| **Design** | User research analysis | UX planning | Asset creation | Design review |
-| **QA** | Test requirement analysis | Test strategy design | Test implementation | Quality validation |
 
 ## 🚀 Future Vision
 
