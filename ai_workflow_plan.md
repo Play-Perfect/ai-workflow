@@ -13,12 +13,12 @@ Transform your AI workflow into a smart, multi-team system supporting Engineerin
 ### 📦 **Git Submodule Distribution**
 ```bash
 # Add AI workflow to ANY project via git submodule
-git submodule add https://github.com/company/ai-workflow-core.git .aiflow
+git submodule add https://github.com/company/play-perfect-ai-workflow.git .play-perfect-ai-workflow
 git submodule update --init
 ```
 
 **What happens:**
-1. **Workflow Templates**: Complete workflow system added to `.aiflow/` folder
+1. **Workflow Templates**: Complete workflow system added to `.play-perfect-ai-workflow/` folder
 2. **Version Controlled**: Easy updates across all projects
 3. **Zero Configuration**: Ready for LLM auto-initialization
 
@@ -27,7 +27,7 @@ git submodule update --init
 **LLM checks user config for initialization status:**
 ```
 LLM Process on any request:
-1. Check: .aiflow/user_config.json exists and completed?
+1. Check: .play-perfect-ai-workflow/user_config.json exists and completed?
    - If NO → Run auto-init sequence
    - If YES → Load settings and proceed to workflow
 
@@ -55,7 +55,7 @@ User Experience: Natural conversation, persistent memory across sessions
 ### 📁 **Complete File Structure**
 ```
 any-project/
-└── .aiflow/                    # Single folder containing everything
+└── .play-perfect-ai-workflow/                    # Single folder containing everything
     ├── workflow.mdc            # Workflow rules (from git submodule)
     ├── CLAUDE.md              # LLM instructions (from git submodule)
     ├── user_config.json       # User onboarding, settings, cache (LLM managed)
@@ -69,7 +69,7 @@ any-project/
         └── measurements.md    # Session tracking
 ```
 
-**Folder Name**: `.aiflow` - Clean, short, clearly indicates AI workflow system
+**Folder Name**: `.play-perfect-ai-workflow` - Clear naming that indicates the Play Perfect AI workflow system
 
 ### Workflow Phases & Agent Specialization
 
@@ -84,7 +84,7 @@ any-project/
 #### **🔧 Phase 1: ENHANCED INIT**
 
 **Step 1: Check Initialization Status**
-- Check: `.aiflow/user_config.json` exists and completed?
+- Check: `.play-perfect-ai-workflow/user_config.json` exists and completed?
 - If YES → Proceed to session creation (existing behavior)
 - If NO → Run onboarding sequence (new addition)
 
@@ -166,7 +166,7 @@ any-project/
 - **📊 LLM Measurement Instructions**:
   - Log: `total_session_time: {duration}, validation_issues_found: {number}`
   - Record: `workflow_completion_status: {successful/partial/failed}`
-  - Save session summary to `.ai_workflow/measurements.md`
+  - Save session summary to `.play-perfect-ai-workflow/measurements.md`
   - **🔄 Auto-update shared Confluence page**: Add formatted entry to "AI Workflow Analytics Dashboard"
 
 ## Key Features
@@ -290,7 +290,7 @@ Development ROI = Cost Savings / AI Development Investment
 
 ### 📊 **Measurement System Architecture**
 
-**Local Measurement File**: `.ai_workflow/measurements.md`
+**Local Measurement File**: `.play-perfect-ai-workflow/measurements.md`
 ```markdown
 # AI Workflow Measurements
 
