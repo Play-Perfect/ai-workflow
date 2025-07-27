@@ -133,11 +133,13 @@ any-project/
   - **🎨 Design-Blueprinter**: Design system planning, user experience mapping, prototype strategy
   - **⚙️ QA-Blueprinter**: Test strategy design, automation planning, quality metrics definition
 - **✅ User Approval**: Present plan → Get confirmation
-- **🎯 Sub-task Creation**: Auto-generate agent-appropriate Jira sub-tasks
+- **🔄 Revision Loop**: If user requests changes → Return to blueprinter → Present revised plan
+- **🎯 Sub-task Creation**: Auto-generate agent-appropriate Jira sub-tasks (only after final approval)
 - **📊 LLM Measurement Instructions**:
   - Log: `plan_approval_attempts: {1 if approved first time, 2+ if revisions needed}`
   - Record: `plan_revision_reasons: {track what user wanted changed}`
   - Track: `llm_misunderstandings: {when user clarifies "I meant X not Y"}`
+  - Measure: `revision_cycles: {number of revision rounds before approval}`
 
 #### **🔨 Phase 4: CONSTRUCT**
 - **⚡ Department-Specific Constructor Agents**:
@@ -148,10 +150,12 @@ any-project/
   - **🎨 Design-Constructor**: Design asset creation, prototype development, style guide updates
   - **⚙️ QA-Constructor**: Test case creation, automation implementation, test execution
 - **📈 Progress Tracking**: Real-time Jira sub-task updates
+- **🔄 User Feedback Loop**: User can request changes during implementation → Constructor revises approach
 - **📊 LLM Measurement Instructions**:
   - Track: `user_guidance_requests: {times user had to redirect LLM approach}`
   - Log: `workflow_interruptions: {times user went outside workflow for missing info}`
   - Record: `llm_accuracy_issues: {specific cases where LLM got user intent wrong}`
+  - Measure: `implementation_revisions: {number of times user requested changes during construction}`
 
 #### **🧪 Phase 5: VALIDATE**
 - **✅ Department-Specific Validator Agents**:
