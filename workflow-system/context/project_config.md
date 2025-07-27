@@ -3,101 +3,115 @@
 *This file is automatically filled by the init agent during the INIT phase after project analysis.*
 
 ## Project Overview
-- **Name**: [Project Name]
-- **Type**: [Web App / API / Library / CLI Tool / etc.]
-- **Description**: [Brief project description]
-- **Repository**: [Git repository URL]
+- **Name**: AI Multi-Agent Workflow System
+- **Type**: Documentation-based Workflow Framework / Git Submodule
+- **Description**: Smart multi-team workflow system supporting Engineering, Product Management, Business Intelligence, and other departments through specialized agents and phase-based execution
+- **Repository**: Git submodule system for distribution across projects
 
 ## Technology Stack
 ### Frontend
-- **Framework**: [React / Vue / Angular / Vanilla JS / etc.]
-- **Language**: [TypeScript / JavaScript / etc.]
-- **Build Tool**: [Vite / Webpack / Parcel / etc.]
-- **Package Manager**: [npm / yarn / pnpm / etc.]
+- **Framework**: Markdown-based documentation system
+- **Language**: Markdown, JSON configuration
+- **Build Tool**: Git submodule distribution
+- **Package Manager**: Git submodule management
 
 ### Backend
-- **Framework**: [Express / FastAPI / Django / etc.]
-- **Language**: [Node.js / Python / Java / etc.]
-- **Database**: [PostgreSQL / MongoDB / MySQL / etc.]
-- **ORM/ODM**: [Prisma / Mongoose / SQLAlchemy / etc.]
+- **Framework**: AI/LLM-driven workflow execution
+- **Language**: Markdown rules and JSON configuration
+- **Database**: File-based session storage in markdown
+- **ORM/ODM**: Direct file manipulation
 
 ### Infrastructure
-- **Deployment**: [Vercel / AWS / Docker / etc.]
-- **CI/CD**: [GitHub Actions / GitLab CI / etc.]
-- **Monitoring**: [Sentry / DataDog / etc.]
+- **Deployment**: Git submodule across projects
+- **CI/CD**: Version controlled through git
+- **Monitoring**: Built-in measurement tracking system
 
 ## Development Environment
 ### Commands
-- **Install**: [npm install / pip install -r requirements.txt / etc.]
-- **Dev Server**: [npm run dev / python manage.py runserver / etc.]
-- **Build**: [npm run build / python setup.py build / etc.]
-- **Test**: [npm test / pytest / etc.]
-- **Lint**: [npm run lint / flake8 / etc.]
-- **Type Check**: [npm run typecheck / mypy / etc.]
+- **Install**: `git submodule add <repo> workflow-system && ./workflow-system/setup.sh`
+- **Dev Server**: AI/LLM chat interface activation
+- **Build**: Automatic via LLM rule execution
+- **Test**: Workflow validation through agent system
+- **Lint**: Markdown and JSON validation
+- **Type Check**: Schema validation for JSON configs
 
 ### Key Directories
-- **Source**: [src/ / app/ / etc.]
-- **Tests**: [tests/ / __tests__ / etc.]
-- **Config**: [config/ / .config / etc.]
-- **Build Output**: [dist/ / build/ / etc.]
+- **Source**: `workflow-system/` (all system files)
+- **Tests**: Built-in validation through agent phases
+- **Config**: `workflow-system/context/` and `workflow-system/agents/`
+- **Build Output**: `workflow-system/sessions/` (generated workflows)
 
 ## Project Structure
 ### Key Files
-- **Entry Point**: [main.js / app.py / index.html / etc.]
-- **Configuration**: [package.json / requirements.txt / Cargo.toml / etc.]
-- **Environment**: [.env / config.yaml / etc.]
+- **Entry Point**: `workflow-system/rules.md` (main workflow rules)
+- **Configuration**: `user_config.json`, `project_config.md`
+- **Environment**: Agent-specific markdown configurations
 
 ### Architecture Patterns
-- **Design Pattern**: [MVC / Component-based / Microservices / etc.]
-- **State Management**: [Redux / Vuex / Context API / etc.]
-- **Routing**: [React Router / Vue Router / etc.]
+- **Design Pattern**: Agent-based multi-phase workflow system
+- **State Management**: File-based session tracking
+- **Routing**: Phase-based agent selection and execution
 
 ## Dependencies
 ### Core Dependencies
-[List of main production dependencies]
+- Git (for submodule distribution)
+- AI/LLM system (Claude, GPT, etc.)
+- Markdown rendering capability
 
 ### Development Dependencies  
-[List of development/build dependencies]
+- Text editor with markdown support
+- Git version control
+- AI chat interface (Cursor, Claude Code)
 
 ### Notable Libraries
-[Key libraries and their purposes]
+- Workflow execution framework (rules.md)
+- Agent system (department-specific configs)
+- Session management (workflow state tracking)
+- Integration APIs (Jira, Confluence, Slack)
 
 ## Team & Workflow
 ### Team Structure
-- **Team Size**: [Number of developers]
-- **Departments**: [Engineering / Product / Design / etc.]
-- **Roles**: [Frontend / Backend / Full-stack / etc.]
+- **Team Size**: Scalable across departments
+- **Departments**: Engineering, Product Management, Business Intelligence, DevOps, Design, QA
+- **Roles**: Multi-department agent specialization
 
 ### Development Workflow
-- **Git Flow**: [Feature branches / Git Flow / GitHub Flow / etc.]
-- **Code Review**: [Required / Optional / Process description]
-- **Release Process**: [Continuous / Scheduled / Manual / etc.]
+- **Git Flow**: Submodule-based distribution
+- **Code Review**: Agent-based validation phases
+- **Release Process**: Version-controlled workflow updates
 
 ## Business Context
 ### Domain
-- **Industry**: [SaaS / E-commerce / Finance / etc.]
-- **Target Users**: [B2B / B2C / Internal tools / etc.]
-- **Key Features**: [Main application features]
+- **Industry**: AI/LLM workflow automation
+- **Target Users**: Development teams, Product teams, Business Intelligence teams
+- **Key Features**: 5-phase execution, department-specific agents, auto-initialization, cross-team collaboration
 
 ### Integration Points
-- **APIs**: [External APIs used]
-- **Services**: [Third-party services]
-- **Platforms**: [Cloud platforms / SaaS tools]
+- **APIs**: Jira REST API, Confluence API, Slack API
+- **Services**: Model Context Protocol (MCP) servers
+- **Platforms**: Compatible with any AI chat interface
 
 ## Quality & Standards
 ### Code Quality
-- **Coding Standards**: [ESLint / Prettier / Black / etc.]
-- **Test Coverage**: [Target percentage / Current status]
-- **Documentation**: [JSDoc / Sphinx / etc.]
+- **Coding Standards**: Markdown formatting, JSON schema validation
+- **Test Coverage**: Comprehensive agent validation system
+- **Documentation**: Self-documenting workflow system
 
 ### Performance
-- **Performance Targets**: [Load time / Response time goals]
-- **Monitoring**: [Performance monitoring tools]
-- **Optimization**: [Key optimization strategies]
+- **Performance Targets**: Efficient agent execution and context management
+- **Monitoring**: Built-in measurement tracking and ROI analysis
+- **Optimization**: Phase-based execution for minimal overhead
 
 ## Notes
-[Additional project-specific notes and context]
+- System designed for git submodule distribution across multiple projects
+- Auto-initialization handles user onboarding and project analysis
+- Supports dynamic workflow customization with `/add-step` command
+- Comprehensive measurement system tracks productivity and ROI
+- Future vision: AI-powered organizational nervous system
+
+## Changelog
+- **2024-12-20**: Created interactive sliding tile puzzle game HTML with responsive design, multiple difficulty levels, keyboard/touch controls, and local score tracking
 
 ---
-*Last updated by init agent: [Timestamp]*
-*Analysis completeness: [Percentage complete]*
+*Last updated by init agent: 2024-12-20*
+*Analysis completeness: 100% complete*

@@ -18,7 +18,7 @@ Execute this onboarding process when:
   - "2. 📊 Product Management" 
   - "3. 📈 Business Intelligence"
 - Ask: "Enter your choice (1, 2, or 3):"
-- Wait for user response (1, 2, or 3)
+- Must Wait for user response (1, 2, or 3). do not procced until user response.
 - Validate input (must be 1, 2, or 3)
 - Store department choice as: "dev", "pm", or "bi"
 - Display confirmation: "✅ Selected: [Department Name]"

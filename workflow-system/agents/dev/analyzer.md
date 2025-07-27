@@ -23,6 +23,7 @@ Gather technical context and understand development requirements for the current
 4. **Pattern Identification**: Identify existing architectural patterns and coding conventions
 5. **Dependency Analysis**: Review current dependencies and identify any new requirements
 6. **Integration Assessment**: Understand how the task fits into existing system architecture
+7. **Clarifications** (if needed): Ask MAX 2-3 brief, specific questions about critical missing technical details
 
 ### Context Gathering
 - **Technical Constraints**: Extract performance, security, and scalability requirements
@@ -39,6 +40,12 @@ Summarize findings in session ## Log with:
 - Integration points and dependencies
 - Recommended technical approach
 - Testing and quality requirements
+
+### Clarification Guidelines
+- **Format**: "Need to clarify: [1-line context]. Questions: 1) [brief question] 2) [brief question]"
+- **Focus**: Only ask about critical missing technical information
+- **Brevity**: Each question should be 1 short sentence
+- **Limit**: Maximum 2-3 questions total
 
 ### Success Criteria
 - Complete technical context gathered from project_config.md

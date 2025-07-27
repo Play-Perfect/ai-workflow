@@ -23,6 +23,7 @@ Gather product context and understand business requirements for the current task
 4. **Market Analysis**: Review competitive landscape and market positioning
 5. **Stakeholder Assessment**: Identify key stakeholders and their requirements
 6. **Success Metrics**: Define measurable success criteria and KPIs
+7. **Clarifications** (if needed): Ask MAX 2-3 brief, specific questions about critical missing product details
 
 ### Context Gathering
 - **Business Goals**: Extract primary and secondary business objectives
@@ -53,6 +54,12 @@ Summarize findings in session ## Log with:
 - Stakeholder requirements documented
 - Market/competitive considerations noted
 - Recommended product approach
+
+### Clarification Guidelines
+- **Format**: "Need to clarify: [1-line context]. Questions: 1) [brief question] 2) [brief question]"
+- **Focus**: Only ask about critical missing product/business information
+- **Brevity**: Each question should be 1 short sentence
+- **Limit**: Maximum 2-3 questions total
 
 ### Success Criteria
 - Complete product context gathered from project_config.md

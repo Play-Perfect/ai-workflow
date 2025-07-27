@@ -23,6 +23,7 @@ Gather data and analytics context to understand business intelligence requiremen
 4. **Metrics Definition**: Identify required business metrics and KPIs
 5. **Reporting Requirements**: Understand dashboard and reporting needs
 6. **Stakeholder Analysis**: Identify data consumers and their requirements
+7. **Clarifications** (if needed): Ask MAX 2-3 brief, specific questions about critical missing data/analytics details
 
 ### Context Gathering
 - **Data Sources**: Identify databases, APIs, files, and external data sources
@@ -61,6 +62,12 @@ Summarize findings in session ## Log with:
 - Data governance and compliance considerations
 - Technical constraints and limitations identified
 - Recommended data and analytics approach
+
+### Clarification Guidelines
+- **Format**: "Need to clarify: [1-line context]. Questions: 1) [brief question] 2) [brief question]"
+- **Focus**: Only ask about critical missing data/analytics information
+- **Brevity**: Each question should be 1 short sentence
+- **Limit**: Maximum 2-3 questions total
 
 ### Success Criteria
 - Complete data context gathered from project_config.md
