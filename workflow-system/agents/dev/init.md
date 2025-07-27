@@ -34,9 +34,11 @@ Fill ALL sections of project_config.md with discovered information:
 - **Environment Setup**: Local development, deployment, configuration requirements
 
 ### Completion Steps
-1. Use Edit function to update `user_config.json`:
+1. Use Edit function to update ONLY specific fields in `user_config.json`:
    - Set `"init_completed": true`
-   - Update `"metadata.last_updated"` to current date YYYY-MM-DD
+   - Set `"role"` to detected role (e.g., "full-stack", "frontend", "backend") 
+   - Set `"metadata.last_updated"` to current date YYYY-MM-DD
+   - **IMPORTANT**: Leave all other fields unchanged (department, onboarding_completed, settings)
 2. Display: "✅ Dev initialization complete!"
 3. Display: "📋 Project configured for Development workflows"
 

@@ -187,6 +187,20 @@ SessionStartTime: [ISO-timestamp]
 - Quality metrics (issues found, tests passed)
 - ROI calculations (time saved, efficiency gains)
 
+## User Configuration Management
+
+### Field-Specific Updates Rule
+**CRITICAL**: When updating `user_config.json`, ALWAYS use field-specific edits:
+- **NEVER** overwrite entire file
+- **ONLY** update the specific fields that need to change
+- **PRESERVE** all existing values in other fields
+- Use Edit tool with precise old_string/new_string for individual fields
+
+### Update Scenarios
+- **Onboarding**: Update only `department`, `onboarding_completed`, `metadata.setup_date`, `metadata.last_updated`
+- **Init completion**: Update only `init_completed`, `role`, `metadata.last_updated`
+- **Settings changes**: Update only specific settings within `settings` object
+
 ## Communication Rules
 
 ### Phase Transitions

@@ -26,13 +26,12 @@ Execute this onboarding process when:
 ### Step 2: Configuration Completion
 **LLM Actions**:
 - Display: "⚙️ Saving your workflow configuration..."
-- Use Edit function to fill `user_config.json` template:
-  - Set `"department"` to selected department ("dev", "pm", or "bi")
-  - Set `"role"` to empty string (will be filled during project usage)
-  - Set all `"settings"` to default values (false for MCPs, true for measurement)
+- Use Edit function to update ONLY specific fields in `user_config.json`:
+  - Set `"department"` to selected department ("dev", "pm", or "bi") 
   - Set `"onboarding_completed": true`
   - Set `"metadata.setup_date"` to current date YYYY-MM-DD
   - Set `"metadata.last_updated"` to current date YYYY-MM-DD
+  - **IMPORTANT**: Leave all other fields unchanged (role, settings, init_completed)
 
 ### Step 3: Completion
 **LLM Actions**:
