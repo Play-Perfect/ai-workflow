@@ -8,7 +8,7 @@ Transform your AI workflow into a smart, multi-team system supporting Engineerin
 - **🔄 5-Phase Execution Model**: INIT → ANALYZE → BLUEPRINT → CONSTRUCT → VALIDATE
 - **🤝 Cross-Department Collaboration**: Seamless agent handoffs and collaborative planning
 - **🚀 Auto-Initialization**: Smart onboarding with project analysis and user profiling
-- **🔗 Full Integration**: Jira ticket management, Confluence documentation, Slack notifications
+- **🔗 MCP Full Integration**: Jira ticket management, Confluence documentation, Slack notifications
 - **📊 ROI Measurement**: Comprehensive tracking of productivity, time savings, and business impact
 - **🛠️ Dynamic Workflow Building**: Add custom steps with `/add-step` command during any phase
 - **📈 Real-time Progress Tracking**: Live Jira sub-task updates and session monitoring
@@ -27,19 +27,8 @@ git submodule update --init
 # 2. Run the setup script (creates symlinks for Claude Code and Cursor)
 ./workflow-system/setup.sh
 
-# 3. Restart Claude Code or Cursor to pick up the new configuration
-
-# 4. Start using the workflow - just ask Claude for help!
+# 4. Start using the workflow - just ask Cursor/Claude for help!
 ```
-
-### What the Setup Script Does
-
-The setup script creates symlinks so Claude Code and Cursor can find the configuration files:
-
-- `CLAUDE.md` → `workflow-system/CLAUDE.md`
-- `.cursor/rules/workflow.mdc` → `workflow-system/.cursor/rules/workflow.mdc`
-
-This keeps all workflow logic centralized in the submodule while making it accessible to your AI tools.
 
 ### Auto-Initialization
 
@@ -49,61 +38,25 @@ On first use, the LLM will automatically:
 3. **Configuration Setup**: Create personalized workflow configuration
 4. **Ready to Use**: Execute 4-phase workflows immediately
 
-### File Structure
-
-The system creates a single `.play-perfect-ai-workflow/` folder containing:
-
-```
-your-project/
-└── .play-perfect-ai-workflow/                    # Complete workflow system
-    ├── workflow.mdc            # Workflow execution rules
-    ├── CLAUDE.md              # LLM instructions
-    ├── user_config.json       # User settings and preferences
-    ├── project_config.md      # Project analysis and configuration
-    ├── agents/                # Department-specific agent configs
-    │   ├── dev-agents.json
-    │   ├── pm-agents.json
-    │   └── ...
-    ├── templates/             # Workflow templates
-    └── sessions/              # Session tracking and measurements
-        └── measurements.md
-```
-
 ## 🔄 Detailed Workflow Description
 
 ### 5-Phase Execution Model
 
 #### 🔧 Phase 1: INIT
-- **Auto-initialization check**: Verifies user configuration and project setup
-- **User onboarding**: Department selection, role definition, preference setting
-- **Project analysis**: Codebase scanning, technology detection, context gathering
-- **Session creation**: Initialize new workflow session with unique ID
+- Auto-initialization check: Verifies user configuration and project setup
+- User onboarding: Department selection, role definition, preference setting
+- Project analysis: Codebase scanning, technology detection, context gathering
+- Session creation: Initialize new workflow session with unique ID
 
 #### 🔍 Phase 2: ANALYZE  
-**Department-Specific Analyzer Agents:**
-- **💻 Dev-Analyzer**: Technical docs, architecture analysis, dependency mapping
-- **📊 PM-Analyzer**: Business requirements, stakeholder research, user needs
-- **📈 BI-Analyzer**: Data source identification, metrics definition, business context
-- **🔧 DevOps-Analyzer**: Infrastructure assessment, deployment pipeline analysis
-- **🎨 Design-Analyzer**: User research, design system analysis, accessibility requirements
-- **⚙️ QA-Analyzer**: Test requirement analysis, risk assessment, coverage planning
-
-**Actions:**
+- Select appropriate Analyzer Agent based on user's department
 - Auto-query Jira tickets for context
 - Search Confluence documentation
 - Gather department-specific requirements
 - Map dependencies and constraints
 
 #### 📝 Phase 3: BLUEPRINT
-**Department-Specific Blueprinter Agents:**
-- **⚙️ Dev-Blueprinter**: Technical architecture, system design, testing strategy
-- **📋 PM-Blueprinter**: PRD creation, roadmap planning, feature specification
-- **📊 BI-Blueprinter**: Analysis methodology, visualization planning, reporting strategy
-- **🔧 DevOps-Blueprinter**: Infrastructure planning, CI/CD design, scaling strategy
-- **🎨 Design-Blueprinter**: Design system planning, UX mapping, prototype strategy
-- **⚙️ QA-Blueprinter**: Test strategy design, automation planning, quality metrics
-
-**Actions:**
+- Select appropriate Blueprinter Agent based on user's department
 - Create detailed implementation plan
 - Present plan for user approval
 - **Revision Loop**: Handle user feedback and plan modifications
@@ -111,15 +64,7 @@ your-project/
 - Enable cross-department collaboration
 
 #### 🔨 Phase 4: CONSTRUCT
-**Department-Specific Constructor Agents:**
-- **💻 Dev-Constructor**: Code implementation, testing execution, deployment
-- **📝 PM-Constructor**: Documentation creation, stakeholder coordination
-- **📊 BI-Constructor**: Data analysis execution, report creation, dashboard building
-- **🔧 DevOps-Constructor**: Infrastructure implementation, pipeline setup
-- **🎨 Design-Constructor**: Design asset creation, prototype development
-- **⚙️ QA-Constructor**: Test case creation, automation implementation
-
-**Actions:**
+- Select appropriate Constructor Agent based on user's department
 - Execute the approved plan
 - Real-time progress tracking
 - **User Feedback Loop**: Accept and implement user-requested changes during construction
@@ -127,19 +72,91 @@ your-project/
 - Handle cross-team dependencies
 
 #### 🧪 Phase 5: VALIDATE
-**Department-Specific Validator Agents:**
-- **🔍 Dev-Validator**: Code review, quality assurance, production readiness
-- **👥 PM-Validator**: Requirements validation, stakeholder approval
-- **📊 BI-Validator**: Data validation, insight accuracy, business impact
-- **🔧 DevOps-Validator**: Infrastructure testing, performance validation
-- **🎨 Design-Validator**: Design review, usability testing, accessibility compliance
-- **⚙️ QA-Validator**: Quality validation, regression testing, release readiness
-
-**Actions:**
+- Select appropriate Validator Agent based on user's department
 - Comprehensive validation and testing
 - Create Confluence documentation
 - Send Slack completion notifications
 - Archive session with measurements
+
+### ⚙️ Automation Rules
+
+The workflow system includes intelligent automation rules that trigger during workflow execution:
+
+#### 🔧 Setup & Configuration Rules
+
+**User Setup Check**
+```
+TRIGGER: Phase == INIT
+ACTION: Verify configuration → Run onboarding if needed
+```
+
+**Agent Selection**
+```
+TRIGGER: Any phase transition
+ACTION: Load department-specific agents for current phase
+```
+
+**Session Management**
+```
+TRIGGER: Workflow start
+ACTION: Create unique session files with timestamp
+```
+
+#### 📊 Performance & Quality Rules
+
+**Log Rotation**
+```
+TRIGGER: session.log.length > 5000 chars
+ACTION: Summarize → Archive → Clear logs
+```
+
+**Performance Tracking**
+```
+TRIGGER: Phase transitions + Workflow completion
+ACTION: Record durations, corrections, accuracy metrics
+```
+
+**Measurement Collection**
+```
+TRIGGER: Phase transitions + Workflow completion
+ACTION: Save ROI calculations and productivity metrics
+```
+
+#### 🔗 Integration Rules
+
+**Jira Management**
+```
+TRIGGER: Blueprint approval + Construction progress
+ACTION: Create sub-tasks → Update progress → Complete tickets
+```
+
+**Confluence Documentation**
+```
+TRIGGER: Analyze phase + Validate completion
+ACTION: Search existing docs → Create session summaries
+```
+
+**Slack Notifications**
+```
+TRIGGER: Workflow completion
+ACTION: Send notifications with time tracking and results
+```
+
+#### 🎯 Workflow Optimization Rules
+
+**Revision Tracking**
+```
+TRIGGER: Blueprint changes + Construction feedback
+ACTION: Monitor revision cycles → Track accuracy
+```
+
+**Quality Assurance**
+```
+TRIGGER: Phase == VALIDATE && Status == COMPLETED
+ACTION: Validate success criteria → Create summaries
+```
+
+These rules run automatically in the background, ensuring smooth workflow execution without requiring manual intervention.
 
 ### 🔄 Workflow Visualization
 
@@ -198,11 +215,25 @@ graph TD
     style F1 fill:#f3e5f5
 ```
 
-### 🤝 Cross-Department Agent Collaboration
+### 📁 File Structure
 
-- **Agent Handoff System**: Seamless transitions between department agents with full context preservation
-- **Cross-Phase Integration**: Agents collaborate across phases (e.g., Dev-Blueprinter with PM-Analyzer)
-- **Collaborative Planning**: Multiple department agents participate in blueprint phase for complex features
+The system creates a single `.play-perfect-ai-workflow/` folder containing:
+
+```
+your-project/
+└── .play-perfect-ai-workflow/                    # Complete workflow system
+    ├── workflow.mdc            # Workflow execution rules
+    ├── CLAUDE.md              # LLM instructions
+    ├── user_config.json       # User settings and preferences
+    ├── project_config.md      # Project analysis and configuration
+    ├── agents/                # Department-specific agent configs
+    │   ├── dev-agents.json
+    │   ├── pm-agents.json
+    │   └── ...
+    ├── templates/             # Workflow templates
+    └── sessions/              # Session tracking and measurements
+        └── measurements.md
+```
 
 ### 🛠️ Dynamic Workflow Customization
 
@@ -242,3 +273,14 @@ System: "✅ Added to VALIDATE phase in Development Agent"
 This system serves as the foundation for company-wide AI automation, transforming from individual task automation to complete organizational operation optimization through intelligent agents that learn, predict, and optimize all business processes.
 
 **Ultimate Goal**: An AI-powered organizational nervous system that sees everything, understands context, takes action, learns continuously, and empowers everyone to be more effective.
+
+## ❓ Common Questions
+
+### What does the setup script do?
+
+The setup script creates symlinks so Claude Code and Cursor can find the configuration files:
+
+- `CLAUDE.md` → `workflow-system/CLAUDE.md`
+- `.cursor/rules/workflow.mdc` → `workflow-system/.cursor/rules/workflow.mdc`
+
+This keeps all workflow logic centralized in the submodule while making it accessible to your AI tools.
