@@ -25,8 +25,6 @@ ln -s ../../workflow-system/.cursor/rules/workflow.mdc .cursor/rules/workflow.md
 
 echo "✅ Setup complete!"
 echo ""
-echo "Next steps:"
-echo "1. Restart Claude Code or Cursor to pick up the new configuration"
-echo "2. The AI workflow system is now ready to use"
+echo "The AI workflow system is now ready to use"
 echo ""
 echo "To get started, just ask Claude to help with any development task!"

@@ -21,7 +21,7 @@ Add AI workflow to any project:
 
 ```bash
 # 1. Add the AI workflow system as a git submodule
-git submodule add https://github.com/company/ai-workflow-system.git workflow-system
+git submodule add https://github.com/Play-Perfect/ai-workflow.git workflow-system
 git submodule update --init
 
 # 2. Run the setup script (creates symlinks for Claude Code and Cursor)
@@ -78,85 +78,69 @@ On first use, the LLM will automatically:
 - Send Slack completion notifications
 - Archive session with measurements
 
-### ⚙️ Automation Rules
+### ⚙️ Unified Execution Rules
 
-The workflow system includes intelligent automation rules that trigger during workflow execution:
+The workflow system uses automatic rules that execute before agent guidance loads:
 
-#### 🔧 Setup & Configuration Rules
+#### 🔄 Automatic Rule Execution
 
-**User Setup Check**
-```
-TRIGGER: Phase == INIT
-ACTION: Verify configuration → Run onboarding if needed
-```
+**INIT Phase → Status: READY**
+- User config creation and onboarding
+- Department initialization  
+- Project analysis and configuration
+- Session creation with unique timestamps
 
-**Agent Selection**
-```
-TRIGGER: Any phase transition
-ACTION: Load department-specific agents for current phase
-```
+**ANALYZE Phase → Status: READY**
+- **Jira ticket integration**: Auto-query tickets for context
+- **Confluence search**: Find relevant documentation
+- Load department-specific analyzer guide
 
-**Session Management**
-```
-TRIGGER: Workflow start
-ACTION: Create unique session files with timestamp
-```
+**BLUEPRINT Phase → Status: NEEDS_APPROVAL**
+- Blueprint archiving before new plan creation
+- Implementation plan creation and user approval
+- **Jira sub-task creation**: Generate tasks from approved blueprint
 
-#### 📊 Performance & Quality Rules
+**CONSTRUCT Phase → Status: RUNNING**
+- Plan execution with testing and checkpoints  
+- Jira sub-task progress updates
+- Adaptive complexity handling
 
-**Log Rotation**
-```
-TRIGGER: session.log.length > 5000 chars
-ACTION: Summarize → Archive → Clear logs
-```
+**VALIDATE Phase → Status: RUNNING**
+- Quality assurance and testing
+- Confluence documentation creation
+- Slack completion notifications
+- Session archiving
 
-**Performance Tracking**
-```
-TRIGGER: Phase transitions + Workflow completion
-ACTION: Record durations, corrections, accuracy metrics
-```
+#### 🤖 Continuous Automation Rules
 
-**Measurement Collection**
-```
-TRIGGER: Phase transitions + Workflow completion
-ACTION: Save ROI calculations and productivity metrics
-```
+**Log Management**: Auto-rotate when logs exceed 5K characters  
+**Pattern Reuse**: Leverage successful approaches from archived sessions  
+**Failure Recovery**: Rollback to checkpoints on construction failures  
+**Metrics Tracking**: Record duration, corrections, and accuracy metrics  
+**Config Updates**: Preserve existing values during field-specific updates
 
-#### 🔗 Integration Rules
+### 🧭 Advisory Agent System
 
-**Jira Management**
-```
-TRIGGER: Blueprint approval + Construction progress
-ACTION: Create sub-tasks → Update progress → Complete tickets
-```
+**Agent Role**: Provide guidance and recommendations, not control workflow execution
 
-**Confluence Documentation**
-```
-TRIGGER: Analyze phase + Validate completion
-ACTION: Search existing docs → Create session summaries
-```
+**Agent Format**:
+- **Purpose**: Help with phase-specific objectives
+- **Approach**: Collaborative and advisory tone
+- **Focus Areas**: Domain-specific best practices and considerations
+- **Guidance**: Suggestions for quality, approach, and technical decisions
 
-**Slack Notifications**
-```
-TRIGGER: Workflow completion
-ACTION: Send notifications with time tracking and results
+**Example - Dev-Analyzer Guide**:
+```markdown
+**Role**: Advisory guide for development teams during analysis phase
+**Purpose**: Help gather technical context and understand requirements
+**Suggested Focus Areas**:
+- Architecture patterns and technology stack
+- Performance, security, and scalability considerations  
+- Testing strategy and code quality standards
+**Remember**: You provide guidance. Automatic rules handle Jira queries and workflow progression.
 ```
 
-#### 🎯 Workflow Optimization Rules
-
-**Revision Tracking**
-```
-TRIGGER: Blueprint changes + Construction feedback
-ACTION: Monitor revision cycles → Track accuracy
-```
-
-**Quality Assurance**
-```
-TRIGGER: Phase == VALIDATE && Status == COMPLETED
-ACTION: Validate success criteria → Create summaries
-```
-
-These rules run automatically in the background, ensuring smooth workflow execution without requiring manual intervention.
+**Key Distinction**: Rules execute automatically, Agents provide advisory guidance after rules complete.
 
 ### 🔄 Workflow Visualization
 
@@ -217,22 +201,29 @@ graph TD
 
 ### 📁 File Structure
 
-The system creates a single `.play-perfect-ai-workflow/` folder containing:
+The system creates a `workflow-system/` folder containing:
 
 ```
 your-project/
-└── .play-perfect-ai-workflow/                    # Complete workflow system
-    ├── workflow.mdc            # Workflow execution rules
-    ├── CLAUDE.md              # LLM instructions
-    ├── user_config.json       # User settings and preferences
-    ├── project_config.md      # Project analysis and configuration
-    ├── agents/                # Department-specific agent configs
-    │   ├── dev-agents.json
-    │   ├── pm-agents.json
+├── CLAUDE.md                  # Main LLM instructions (symlinked)
+└── workflow-system/           # Complete workflow system
+    ├── user_config.json       # Generated user configuration
+    ├── context/               # Templates and context
+    │   ├── workflow_state.md  # Session state template
+    │   ├── project_config.md  # Generated project analysis
+    │   └── project_config_template.md
+    ├── config/                # Core configuration files
+    │   ├── CLAUDE.md          # LLM instructions
+    │   ├── rules.md           # Unified workflow rules
+    │   ├── onboarding.md      # User onboarding process
+    │   └── user_config_template.json
+    ├── agents/                # Department-specific agents
+    │   ├── dev/
+    │   ├── pm/
+    │   ├── bi/
     │   └── ...
-    ├── templates/             # Workflow templates
-    └── sessions/              # Session tracking and measurements
-        └── measurements.md
+    └── sessions/              # Session tracking files
+        └── workflow_state_YYYYMMDD_HHMMSS_feature.md
 ```
 
 ### 🛠️ Dynamic Workflow Customization
@@ -248,7 +239,7 @@ System: "✅ Added to VALIDATE phase in Development Agent"
 
 ### 📊 Comprehensive Measurement System
 
-**Local Tracking** (`.play-perfect-ai-workflow/sessions/measurements.md`):
+**Local Tracking** (`workflow-system/sessions/`):
 - Session duration and phase metrics
 - User corrections and LLM accuracy issues
 - **Revision tracking**: Blueprint revision cycles, construction feedback loops
@@ -278,9 +269,8 @@ This system serves as the foundation for company-wide AI automation, transformin
 
 ### What does the setup script do?
 
-The setup script creates symlinks so Claude Code and Cursor can find the configuration files:
+The setup script creates symlinks so Claude Code can find the configuration files:
 
-- `CLAUDE.md` → `workflow-system/CLAUDE.md`
-- `.cursor/rules/workflow.mdc` → `workflow-system/.cursor/rules/workflow.mdc`
+- `CLAUDE.md` → `workflow-system/config/CLAUDE.md`
 
-This keeps all workflow logic centralized in the submodule while making it accessible to your AI tools.
+This keeps all workflow logic centralized in the submodule while making it accessible to Claude Code.
