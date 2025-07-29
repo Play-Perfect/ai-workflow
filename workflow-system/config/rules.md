@@ -33,7 +33,7 @@
 ## Automatic Rules
 
 ### Phase: INIT → Status: READY
-1. **Workflow necessity check**: If user request seems simple/direct → Ask user "Should I use the AI workflow system for this task, or handle it directly? The workflow provides structured analysis, planning, and Jira/Confluence integration, but may be overkill for simple tasks." → If user chooses direct handling, exit workflow
+1. **Workflow necessity check**: If user request seems simple/direct → Ask user "🤔 How should I handle this?\n1️⃣ AI workflow session?\n2️⃣ Quick flow?" → If user chooses 2, use project_config context only and exit workflow
 2. **If no user_config.json exists**: Read template → Create user_config.json
 3. **If onboarding_completed == false**: Follow onboarding.md → Ask department → Update config
 4. **If init_completed == false**: Load department init agent for guidance → Update config
@@ -41,8 +41,8 @@
 6. **Session creation**: Create workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
 
 ### Phase: ANALYZE → Status: READY  
-1. **Query Jira**: If enable_jira_mcp → Ask user "Do you have a Jira ticket to reference? (provide ticket number or say 'none')" → If provided, fetch details → Log context or "No Jira ticket referenced"
-2. **Search Confluence**: If enable_confluence_mcp → Search docs relevant to project/task (up to 2 attempts) → Log findings or "No relevant docs found"  
+1. **Query Jira**: If enable_jira_mcp → Ask user "Do you have a Jira ticket to reference? (provide ticket number or say 'none')" → **WAIT for user response** → If provided, fetch details via Atlassian MCP → Log context or "No Jira ticket referenced"
+2. **Search Confluence**: If enable_confluence_mcp → Use Atlassian MCP to search docs relevant to project/task (up to 2 attempts) → Log findings or "No relevant docs found"  
 3. **Load guide**: Read department from user_config.json → Load agents/{department}/analyzer.md
 4. **Set status**: Status = RUNNING
 
@@ -117,6 +117,7 @@
 - **Complex tasks (complexity 4-5)**: Add pre-validation step
 
 ## Communication Patterns
+- ❓ **WORKFLOW CHOICE**: "🤔 How should I handle this?\n1️⃣ AI workflow session?\n2️⃣ Quick flow?"
 - 📁 **INIT**: "Setting up workflow..."
 - 🧠 **ANALYZE**: "Gathering context with {Department} guidance..."
 - 📋 **BLUEPRINT**: "Creating plan with {Department} guidance..."
