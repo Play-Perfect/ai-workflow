@@ -33,13 +33,10 @@ Gather technical context and understand development requirements for the current
 - **Build/Deploy Impact**: Assess impact on build processes and deployment
 
 ### Output Requirements
-Summarize findings in session ## Log with:
-- Technical requirements clearly defined
-- Existing patterns and conventions identified
-- Potential technical challenges or blockers
-- Integration points and dependencies
-- Recommended technical approach
-- Testing and quality requirements
+Update current session file `workflow-system/sessions/workflow_state_*.md` ## Log with:
+• Brief analysis findings (max 5 bullet points)
+• Set CurrentItem, Confidence (1-10), complexity (1-5) in State section
+• Only add ## Summary section if clarifications needed from user
 
 ### Clarification Guidelines
 - **Format**: "Need to clarify: [1-line context]. Questions: 1) [brief question] 2) [brief question]"

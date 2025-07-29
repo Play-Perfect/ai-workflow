@@ -3,12 +3,5 @@
 # Ignore session files (user-specific workflow tracking)
 sessions/
 
-# Ignore user configuration (user-specific settings)
-user_config.json
-
 # Ignore measurements (user-specific analytics)
 measurements/
-
-# Keep template files but ignore generated content
-!sessions/.gitkeep
-!measurements/.gitkeep

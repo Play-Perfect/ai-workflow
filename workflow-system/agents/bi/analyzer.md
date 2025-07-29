@@ -55,13 +55,10 @@ Gather data and analytics context to understand business intelligence requiremen
 - External stakeholder data sharing needs
 
 ### Output Requirements
-Summarize findings in session ## Log with:
-- Available data sources and quality assessment
-- Required business metrics and KPIs clearly defined
-- Reporting and dashboard requirements documented
-- Data governance and compliance considerations
-- Technical constraints and limitations identified
-- Recommended data and analytics approach
+Update current session file `workflow-system/sessions/workflow_state_*.md` ## Log with:
+• Brief analysis findings (max 5 bullet points)
+• Set CurrentItem, Confidence (1-10), complexity (1-5) in State section
+• Only add ## Summary section if clarifications needed from user
 
 ### Clarification Guidelines
 - **Format**: "Need to clarify: [1-line context]. Questions: 1) [brief question] 2) [brief question]"

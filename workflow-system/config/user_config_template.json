@@ -1,0 +1,18 @@
+{
+  "_template_info": "TEMPLATE FILE: DO NOT MODIFY DIRECTLY. Copy to workflow-system/user_config.json during onboarding.",
+  "onboarding_completed": false,
+  "init_completed": false,
+  "department": "",
+  "role": "",
+  "settings": {
+    "enable_jira_mcp": true,
+    "enable_confluence_mcp": true,
+    "enable_slack_mcp": false,
+    "enable_measurement_tracking": true
+  },
+  "metadata": {
+    "setup_date": "",
+    "last_updated": "",
+    "version": "1.0"
+  }
+}

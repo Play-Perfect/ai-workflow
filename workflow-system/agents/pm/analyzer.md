@@ -47,13 +47,10 @@ Gather product context and understand business requirements for the current task
 - Understand regulatory and compliance requirements
 
 ### Output Requirements
-Summarize findings in session ## Log with:
-- Clear product requirements and acceptance criteria
-- User needs and experience requirements identified
-- Business objectives and success metrics defined
-- Stakeholder requirements documented
-- Market/competitive considerations noted
-- Recommended product approach
+Update current session file `workflow-system/sessions/workflow_state_*.md` ## Log with:
+• Brief analysis findings (max 5 bullet points)
+• Set CurrentItem, Confidence (1-10), complexity (1-5) in State section
+• Only add ## Summary section if clarifications needed from user
 
 ### Clarification Guidelines
 - **Format**: "Need to clarify: [1-line context]. Questions: 1) [brief question] 2) [brief question]"
