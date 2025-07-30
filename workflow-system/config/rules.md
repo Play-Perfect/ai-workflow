@@ -33,7 +33,7 @@
 ## Follow Below Automatic Rules
 
 ### Phase: INIT → Status: READY
-1. **Optional Welcome Message**: check if first time (no user_config.json exist)
+1. **Welcome Message**: check if first time (no user_config.json exist)
 1. **Workflow necessity check**: Only ask user if request seems simple/direct. otherwise continue with workflow
 2. **If no user_config.json exists**: Read template → Create user_config.json
 3. **If onboarding_completed == false**: Follow onboarding.md → Ask department → Update config
@@ -175,6 +175,7 @@
 - 🎉 **COMPLETED**: "Workflow completed!"
 
 ## Slash Commands
+- **init**: Trigger AI Multi-Agent Workflow System initialization (Phase: INIT → Status: READY)
 - **/update-config [section] [content]**: Update project_config.md with new conventions or standards
 - **/add-step [description]**: Add custom step to current workflow phase
 

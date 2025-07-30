@@ -1,57 +1,85 @@
 # Dev-Init Guide
 
-**Role**: Advisory guide for development team project initialization
+**Role**: Comprehensive project analysis and technical context extraction
 
-## Your Advisory Role
+## Your Mission
 
-**Purpose**: Help analyze and understand the complete technical context of the project
+**Purpose**: Perform autonomous, thorough analysis of the entire project to create a complete technical contract of how this codebase works.
 
-**Your approach should be**:
-- Comprehensive and systematic in analysis
-- Focused on technical architecture and patterns
-- Thorough in documenting project context
+**Your approach**:
+- Analyze everything systematically without asking questions
+- Extract concrete examples and patterns from actual code
+- Document findings as a comprehensive development knowledge base
+- Only ask 1-2 short questions if something is genuinely unclear
 
-## Suggested Analysis Areas
+## Required Analysis Tasks
 
-### Project Structure Review
-- **Architecture mapping**: Understand code organization and component relationships
-- **Technology inventory**: Identify all languages, frameworks, tools, and databases
-- **Dependency analysis**: Review all project dependencies and external integrations
-- **Configuration assessment**: Analyze build systems, CI/CD, and deployment setup
+### 1. Complete Project Structure Mapping
+- Use Glob and LS tools to map the entire directory structure
+- Identify all file types, languages, and key directories
+- Document folder organization patterns and naming conventions
+- Map component relationships and module dependencies
 
-### Technical Context Gathering
-- **Code conventions**: Extract and document coding standards, style guides, naming conventions
-- **Code examples**: Capture representative code patterns and implementation examples
-- **Architecture patterns**: Identify design patterns, folder structures, module organization
-- **Development workflow**: Document build scripts, test commands, linting, formatting tools
-- **Quality standards**: Capture testing approaches, code review practices, CI/CD setup
-- **Project structure**: Map directory conventions, file organization, configuration patterns
+### 2. Technology Stack Inventory
+- Scan all package.json, requirements.txt, go.mod, Cargo.toml, etc.
+- Identify frameworks, libraries, databases, and external services
+- Document version constraints and compatibility requirements
+- Find configuration files for build tools, CI/CD, deployment
 
-### Documentation Review
-- **README analysis**: Understand project purpose and setup instructions
-- **Code comments**: Extract technical insights and architectural decisions
-- **Configuration files**: Analyze all config files for technical context
-- **Git history**: Review project evolution and development patterns
+### 3. Code Convention Extraction
+- Read multiple source files to identify coding standards
+- Extract naming conventions for files, functions, variables, classes
+- Document indentation, formatting, and style patterns
+- Identify architectural patterns (MVC, modular, microservices, etc.)
+- Capture error handling patterns and logging approaches
 
-## Analysis Process Recommendations
+### 4. Representative Code Examples Collection
+- Extract 3-5 representative code snippets showing project patterns
+- Include examples of: component structure, API calls, data handling, testing
+- Document how new features are typically implemented
+- Show configuration patterns and setup examples
 
-**Suggest systematic approach**:
-1. **Full project scan**: Map entire project structure and organization
-2. **Configuration analysis**: Identify all config files and settings
-3. **Code convention extraction**: Analyze code style, naming patterns, file organization
-4. **Code example collection**: Extract representative code snippets showing project patterns
-5. **Source code review**: Analyze main source directories and key implementation files
-6. **Documentation review**: Read all available project documentation
-7. **Development setup**: Understand build, test, and deployment processes
-8. **Context compilation**: Synthesize findings into comprehensive project understanding with examples
+### 5. Development Workflow Analysis
+- Find and read package.json scripts, Makefile, build files
+- Identify test commands, linting tools, formatting tools
+- Document deployment and build processes
+- Extract quality gates and CI/CD pipeline steps
 
-## Success Indicators
-- Complete project structure is mapped and understood
-- All major technologies and dependencies are identified
-- Code conventions and style guides are documented
-- Representative code examples are captured
-- Development workflow is fully documented with specific commands
-- Technical context includes concrete examples and patterns
-- Project analysis serves as comprehensive development knowledge base
+### 6. Documentation and Context Review
+- Read all README files, documentation, and code comments
+- Extract project purpose, setup instructions, and usage patterns
+- Identify business logic and domain-specific requirements
+- Review git history for architectural decisions and evolution patterns
 
-**Remember**: You provide analysis guidance and technical insights. The automatic rules handle project_config.md creation and user_config.json updates.
+## Execution Process
+
+**Execute these steps sequentially**:
+
+1. **Project Scan**: Use Glob patterns to discover all files and structure
+2. **Config Analysis**: Read all configuration files (package.json, etc.)
+3. **Code Review**: Read key source files to understand patterns and conventions
+4. **Example Extraction**: Collect concrete code examples showing project patterns
+5. **Documentation Review**: Read README, docs, and inline documentation
+6. **Workflow Discovery**: Identify build, test, and deployment commands
+7. **Context Synthesis**: Compile findings into comprehensive project understanding
+
+## Final Deliverable
+
+Your analysis should populate the structure defined in `@workflow-system/context/project_config_template.md`:
+
+- **Goal**: Project purpose and main objectives
+- **Tech Stack**: Languages, frameworks, key dependencies with versions
+- **Patterns**: Code conventions, architectural patterns, naming conventions with concrete examples
+- **Constraints**: Performance requirements, business rules, technical limitations
+- **Quality Standards**: Testing approaches, documentation patterns, development workflow commands
+
+Provide a concise summary covering:
+- **Tech Stack**: Languages, frameworks, key dependencies
+- **Architecture**: Code organization patterns and design decisions  
+- **Conventions**: Naming, formatting, and structural patterns with examples
+- **Workflow**: Key commands for development (build, test, lint, deploy)
+- **Key Insights**: 2-3 critical things developers need to know about this project
+
+**Only ask questions if**: Critical information is genuinely unclear after thorough analysis. Maximum 2 short, specific questions.
+
+**Remember**: Create a technical contract that serves as the complete development knowledge base for this project. The automatic rules will handle project_config.md creation and user_config.json updates based on your analysis.
