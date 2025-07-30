@@ -112,17 +112,22 @@
 ### Phase: SUMMARY → Status: RUNNING
 1. **Generate measurements**: Use measurement agent to format session metrics including user_name
 2. **Generate changelog**: Use measurement agent to format detailed workflow summary including user_name
-3. **Upload measurements to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Find/create page "Measurements" in "AI WorkFlow" folder within confluence_space_key → Append formatted measurement summary
-4. **Upload changelog to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Create new page in "AI WorkFlow/Changelog" folder within confluence_space_key → Title: "{DevName}_{TaskName}_{YYYYMMDD}" → Add formatted changelog summary
-5. **Update Jira tickets**: If CreatedTickets exist → Mark all sub-tasks as Done via Atlassian MCP → Update main ticket to Completed
-6. **Archive locally**: Prepend summary to workflow-system/context/project_config.md Changelog
-7. **Set status**: Status = COMPLETED
+3. **Update documentation**: Check for project README files → Update relevant sections with new features/changes → Create README if none exists → Follow project documentation standards
+4. **Upload measurements to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Find/create page "Measurements" in "AI WorkFlow" folder within confluence_space_key → Append formatted measurement summary
+5. **Upload changelog to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Create new page in "AI WorkFlow/Changelog" folder within confluence_space_key → Title: "{DevName}_{TaskName}_{YYYYMMDD}" → Add formatted changelog summary
+6. **Update Jira tickets**: If CreatedTickets exist → Mark all sub-tasks as Done via Atlassian MCP → Update main ticket to Completed
+7. **Archive locally**: Prepend summary to workflow-system/context/project_config.md Changelog
+8. **Set status**: Status = COMPLETED
 
 ### Phase: SUMMARY → Status: COMPLETED
 1. **Notifications**: Send Slack notifications (if enabled)
 2. **Complete**: Workflow finished successfully
 
 ## Continuous Rules (Always Active)
+
+### Slash Command Handling
+- **/update-config [section] [content]**: Update specific section in workflow-system/context/project_config.md → Preserve existing format and other sections
+- **/add-step [description]**: Load agents/default/add-step.md for guidance → Add custom step to current phase in workflow-system/config/rules.md → Use same format as existing steps
 
 ### Config Updates
 - **Any config update**: NEVER overwrite entire file → ONLY update specific fields → PRESERVE existing values
@@ -153,6 +158,10 @@
 - ✅ **VALIDATE**: "Validating with {Department} guidance..."
 - 📊 **SUMMARY**: "Generating measurements and reports..."
 - 🎉 **COMPLETED**: "Workflow completed!"
+
+## Slash Commands
+- **/update-config [section] [content]**: Update project_config.md with new conventions or standards
+- **/add-step [description]**: Add custom step to current workflow phase
 
 ## Department Support
 - **dev**: Engineering workflows with technical focus
