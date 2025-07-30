@@ -8,6 +8,7 @@ Generate standardized measurement summaries and reports for AI workflow sessions
 ### Required Metrics
 - **Session ID**: workflow_state_YYYYMMDD_HHMMSS_feature format
 - **Task Name**: Brief description of the work completed
+- **Developer Name**: Name of the developer who executed the workflow
 - **Department**: Engineering team (dev, pm, bi, devops, design, qa)
 - **Start Time**: Session initialization timestamp
 - **End Time**: Workflow completion timestamp
@@ -33,6 +34,7 @@ Generate standardized measurement summaries and reports for AI workflow sessions
 ## Session: {SessionID}
 **Date**: {YYYY-MM-DD}
 **Task**: {TaskName}
+**Developer**: {DevName}
 **Department**: {Department}
 **Total Duration**: {TotalMinutes} minutes
 **Status**: {COMPLETED/FAILED}
@@ -58,6 +60,7 @@ Generate standardized measurement summaries and reports for AI workflow sessions
 
 ## Overview
 **Session ID**: {SessionID}
+**Developer**: {DevName}
 **Department**: {Department}  
 **Duration**: {TotalDuration}
 **Status**: {CompletionStatus}
@@ -130,6 +133,13 @@ Generate standardized measurement summaries and reports for AI workflow sessions
 1. **During Session**: Collect metrics at each phase transition
 2. **At Completion**: Generate both summary formats
 3. **Upload Process**: 
-   - Append measurement summary to Confluence Measurements page
-   - Create new changelog document with detailed summary
+   - **Measurements**: Find or create page "Measurements" in "AI WorkFlow" folder within confluence_space_key → Append new session measurement summary
+   - **Changelog**: Create new page in nested folder "AI WorkFlow/Changelog" within confluence_space_key → Title: "{DevName}_{TaskName}_{YYYYMMDD}" → Add complete changelog summary
+
+## Confluence Folder Structure Requirements
+- **Space**: User's confluence_space_key (from user config)
+- **Main folder**: "AI WorkFlow" (create if doesn't exist)
+- **Measurements**: Single page "Measurements" inside "AI WorkFlow" folder (append each session)
+- **Changelog folder**: "Changelog" subfolder inside "AI WorkFlow" folder (create if doesn't exist)
+- **Individual changelogs**: Separate pages inside "AI WorkFlow/Changelog" folder
 4. **Analysis**: Use data for continuous process improvement
