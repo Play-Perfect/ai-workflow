@@ -30,9 +30,19 @@ git submodule update --init
 # 3. Start using the workflow - just ask Cursor/Claude for help!
 ```
 
-### Auto-Initialization
+### Initialize Your Workflow
 
-On first use, the LLM will automatically:
+After setup, initialize the workflow system by asking your LLM:
+
+```
+init
+```
+
+This will trigger the auto-initialization process.
+
+### Auto-Initialization Process
+
+When you run the `init` command, the system will automatically:
 1. **User Onboarding**: Detect git username and ask about department preferences
 2. **Project Analysis**: Scan your codebase and detect technology stack
 3. **Configuration Setup**: Create personalized workflow configuration

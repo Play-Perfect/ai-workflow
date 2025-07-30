@@ -23,17 +23,17 @@
 - **Format**: Suggestions, focus areas, recommended approaches
 
 ## Files Structure
-- `workflow-system/user_config.json` – Generated user configuration
-- `workflow-system/config/user_config_template.json` – Template for user config
-- `workflow-system/context/project_config.md` – Generated project analysis
-- `workflow-system/context/project_config_template.md` – Template for project config
-- `workflow-system/context/workflow_state.md` – Template for session tracking
-- `workflow-system/agents/{department}/{phase}.md` – Advisory agent guides
+- `./workflow-system/workflow-system/user_config.json` – Generated user configuration
+- `./workflow-system/workflow-system/config/user_config_template.json` – Template for user config
+- `./workflow-system/workflow-system/context/project_config.md` – Generated project analysis
+- `./workflow-system/workflow-system/context/project_config_template.md` – Template for project config
+- `./workflow-system/workflow-system/context/workflow_state.md` – Template for session tracking
+- `./workflow-system/workflow-system/agents/{department}/{phase}.md` – Advisory agent guides
 
-## Automatic Rules
+## Follow Below Automatic Rules
 
 ### Phase: INIT → Status: READY
-1. **Optional Welcome Message**: check if first time (not user_config.json)
+1. **Optional Welcome Message**: check if first time (no user_config.json exist)
 1. **Workflow necessity check**: Only ask user if request seems simple/direct. otherwise continue with workflow
 2. **If no user_config.json exists**: Read template → Create user_config.json
 3. **If onboarding_completed == false**: Follow onboarding.md → Ask department → Update config
