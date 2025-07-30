@@ -23,10 +23,11 @@
 - **Format**: Suggestions, focus areas, recommended approaches
 
 ## Files Structure
-- `./workflow-system/workflow-system/user_config.json` – Generated user configuration
+- `./ai-workflow-config/user_config.json` – Generated user configuration (in project root)
 - `./workflow-system/workflow-system/config/user_config_template.json` – Template for user config
-- `./workflow-system/workflow-system/context/project_config.md` – Generated project analysis
+- `./ai-workflow-config/project_config.md` – Generated project analysis (in project root)
 - `./workflow-system/workflow-system/context/project_config_template.md` – Template for project config
+- `./ai-workflow-config/sessions/workflow_state_*.md` – Session tracking files (in project root)
 - `./workflow-system/workflow-system/context/workflow_state.md` – Template for session tracking
 - `./workflow-system/workflow-system/agents/{department}/{phase}.md` – Advisory agent guides
 
@@ -34,12 +35,12 @@
 
 ### Phase: INIT → Status: READY
 1. **Welcome Message**: If no user_config.json exists → Display first-time welcome: "👋 Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
-2. **If no user_config.json exists**: Read template → Create user_config.json
+2. **If no user_config.json exists**: Read template → Create ai-workflow-config/user_config.json
 3. **If onboarding_completed == false**: Follow onboarding.md → Ask department → Update config
 4. **If init_completed == false**: Load department init agent for guidance → Ask user department-specific questions → **WAIT for user responses** → Update config with init_completed=true → **UNLOAD agent before proceeding**
 5. **Workflow necessity check**: Only ask user if request seems simple/direct. otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
-6. **When setup complete**: **ONLY AFTER agent unloaded** → Analyze project → Create workflow-system/context/project_config.md
-7. **Session creation**: Create workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
+6. **When setup complete**: **ONLY AFTER agent unloaded** → Analyze project → Create ai-workflow-config/project_config.md
+7. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
 8. **Start measurements**: Record session start time → Initialize revision counters
 
 ### Phase: ANALYZE → Status: READY  
@@ -117,7 +118,7 @@
 4. **Upload measurements to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Find/create page "Measurements" in "AI WorkFlow" folder within confluence_space_key → Append formatted measurement summary
 5. **Upload changelog to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Create new page in "AI WorkFlow/Changelog" folder within confluence_space_key → Title: "{DevName}_{TaskName}_{YYYYMMDD}" → Add formatted changelog summary
 6. **Update Jira tickets**: If CreatedTickets exist → Mark all sub-tasks as Done via Atlassian MCP → Update main ticket to Completed
-7. **Archive locally**: Prepend summary to workflow-system/context/project_config.md Changelog
+7. **Archive locally**: Prepend summary to ai-workflow-config/project_config.md Changelog
 8. **Set status**: Status = COMPLETED
 
 ### Phase: SUMMARY → Status: COMPLETED
@@ -141,7 +142,7 @@
 ## Continuous Rules (Always Active)
 
 ### Slash Command Handling
-- **/update-config [section] [content]**: Update specific section in workflow-system/context/project_config.md → Preserve existing format and other sections
+- **/update-config [section] [content]**: Update specific section in ai-workflow-config/project_config.md → Preserve existing format and other sections
 - **/add-step [description]**: Load agents/default/add-step.md for guidance → Add custom step to current phase in workflow-system/config/rules.md → Use same format as existing steps
 
 ### Config Updates
@@ -176,7 +177,7 @@
 
 ## Slash Commands
 - **init**: Trigger AI Multi-Agent Workflow System initialization (Phase: INIT → Status: READY)
-- **/update-config [section] [content]**: Update project_config.md with new conventions or standards
+- **/update-config [section] [content]**: Update ai-workflow-config/project_config.md with new conventions or standards
 - **/add-step [description]**: Add custom step to current workflow phase
 
 ## Department Support

@@ -67,7 +67,14 @@ else
 fi
 
 
-# Create necessary directories for workflow system
+# Create workflow config directory in project root (at same level as workflow-system)
+echo "📁 Creating workflow config directory in project root..."
+mkdir -p ../ai-workflow-config
+mkdir -p ../ai-workflow-config/sessions
+mkdir -p ../ai-workflow-config/measurements
+echo "✅ Workflow config directory created at project root level"
+
+# Create necessary directories for workflow system (keep for backward compatibility)
 echo "📁 Creating workflow directories..."
 mkdir -p ${WORKFLOW_PATH}/sessions
 mkdir -p ${WORKFLOW_PATH}/measurements
@@ -91,6 +98,7 @@ echo "   Cursor MCP: .cursor/mcp.json (if created)"
 echo "   Cursor rules: .cursor/rules/workflow.mdc (if created)"
 echo ""
 echo "📊 Workflow system ready!"
-echo "   Sessions: ${WORKFLOW_PATH}/sessions/"
-echo "   Measurements: ${WORKFLOW_PATH}/measurements/"
+echo "   User configs: ai-workflow-config/ (in your project root)"
+echo "   Sessions: ai-workflow-config/sessions/"
+echo "   Measurements: ai-workflow-config/measurements/"
 echo "   Rules: ${WORKFLOW_PATH}/config/rules.md"
