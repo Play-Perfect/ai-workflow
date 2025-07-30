@@ -69,13 +69,16 @@ fi
 
 # Create workflow config directory in project root (at same level as workflow-system)
 echo "📁 Creating workflow config directory in project root..."
-echo "DEBUG: Current directory: $(pwd)"
-echo "DEBUG: About to create ../../ai-workflow-config"
-mkdir -p ../../ai-workflow-config || echo "ERROR: Failed to create ../../ai-workflow-config"
-mkdir -p ../../ai-workflow-config/sessions || echo "ERROR: Failed to create sessions"
-mkdir -p ../../ai-workflow-config/measurements || echo "ERROR: Failed to create measurements"
-echo "DEBUG: Checking if folder exists: $(ls -la ../../ | grep ai-workflow-config || echo 'NOT FOUND')"
-echo "✅ Workflow config directory created at project root level"
+# Calculate project root based on script location
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+echo "DEBUG: Script directory: ${SCRIPT_DIR}"
+echo "DEBUG: Project root: ${PROJECT_ROOT}"
+mkdir -p "${PROJECT_ROOT}/ai-workflow-config" || echo "ERROR: Failed to create ai-workflow-config"
+mkdir -p "${PROJECT_ROOT}/ai-workflow-config/sessions" || echo "ERROR: Failed to create sessions"
+mkdir -p "${PROJECT_ROOT}/ai-workflow-config/measurements" || echo "ERROR: Failed to create measurements"
+echo "DEBUG: Checking if folder exists: $(ls -la "${PROJECT_ROOT}" | grep ai-workflow-config || echo 'NOT FOUND')"
+echo "✅ Workflow config directory created at project root level: ${PROJECT_ROOT}/ai-workflow-config"
 
 # Create necessary directories for workflow system (keep for backward compatibility)
 echo "📁 Creating workflow directories..."
