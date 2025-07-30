@@ -24,8 +24,8 @@ Add AI workflow to any project:
 git submodule add https://github.com/Play-Perfect/ai-workflow.git workflow-system
 git submodule update --init
 
-# 2. Run the setup script (creates symlinks for Claude Code and Cursor)
-./workflow-system/setup.sh
+# 2. Run the setup script (automatically detects nested structure)
+./workflow-system/workflow-system/setup.sh
 
 # 3. Start using the workflow - just ask Cursor/Claude for help!
 ```
@@ -174,28 +174,32 @@ The workflow system uses automatic rules that execute before agent guidance:
 ```
 your-project/
 ├── CLAUDE.md                  # Main LLM instructions (symlinked)
-└── workflow-system/           # Complete workflow system
-    ├── user_config.json       # Generated user configuration
-    ├── context/               # Templates and context
-    │   ├── workflow_state.md  # Session state template
-    │   ├── project_config.md  # Generated project analysis
-    │   └── project_config_template.md
-    ├── config/                # Core configuration files
-    │   ├── CLAUDE.md          # LLM instructions
-    │   ├── rules.md           # Unified workflow rules
-    │   ├── onboarding.md      # User onboarding process
-    │   └── user_config_template.json
-    ├── agents/                # Department-specific agents
-    │   ├── dev/               # Development team agents
-    │   ├── pm/                # Product management agents
-    │   ├── bi/                # Business intelligence agents
-    │   ├── devops/            # DevOps team agents
-    │   ├── design/            # Design team agents
-    │   ├── qa/                # QA team agents
-    │   └── default/           # Default measurement agent
-    │       └── measurement.md # Measurement formatting templates
-    └── sessions/              # Session tracking files
-        └── workflow_state_YYYYMMDD_HHMMSS_feature.md
+└── workflow-system/           # Git submodule
+    └── workflow-system/       # Complete workflow system
+        ├── user_config.json       # Generated user configuration
+        ├── context/               # Templates and context
+        │   ├── workflow_state.md  # Session state template
+        │   ├── project_config.md  # Generated project analysis
+        │   └── project_config_template.md
+        ├── config/                # Core configuration files
+        │   ├── rules.md           # Unified workflow rules
+        │   ├── onboarding.md      # User onboarding process
+        │   └── user_config_template.json
+        ├── agents/                # Department-specific agents
+        │   ├── dev/               # Development team agents
+        │   ├── pm/                # Product management agents
+        │   ├── bi/                # Business intelligence agents
+        │   ├── devops/            # DevOps team agents
+        │   ├── design/            # Design team agents
+        │   ├── qa/                # QA team agents
+        │   └── default/           # Default measurement agent
+        │       └── measurement.md # Measurement formatting templates
+        ├── llm_configs/           # LLM-specific configurations
+        │   └── claude/
+        │       └── CLAUDE.md      # Main LLM instructions
+        ├── sessions/              # Session tracking files
+        ├── measurements/          # Measurement data
+        └── setup.sh              # Setup script
 ```
 
 ## 🔗 Integration Points
@@ -216,9 +220,10 @@ This system serves as the foundation for company-wide AI automation, transformin
 
 ### What does the setup script do?
 
-The setup script creates symlinks so Claude Code can find the configuration files:
+The setup script automatically detects nested or standard structure and creates symlinks so Claude Code can find the configuration files:
 
-- `CLAUDE.md` → `workflow-system/config/CLAUDE.md`
+- `CLAUDE.md` → `workflow-system/workflow-system/llm_configs/claude/CLAUDE.md` (nested)
+- or `CLAUDE.md` → `workflow-system/llm_configs/claude/CLAUDE.md` (standard)
 
 This keeps all workflow logic centralized in the submodule while making it accessible to Claude Code.
 
