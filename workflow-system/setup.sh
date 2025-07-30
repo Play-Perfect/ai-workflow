@@ -25,13 +25,13 @@ ln -s ${WORKFLOW_PATH}/llm_configs/claude/CLAUDE.md CLAUDE.md
 # Check if workflow.mdc exists and setup Cursor rules symlink
 echo "📁 Setting up Cursor integration..."
 mkdir -p .cursor/rules
-if [ -f ${WORKFLOW_PATH}/llm_configs/cursor/workflow.mdc ]; then
+if [ -f ${WORKFLOW_PATH}/llm_configs/cursor/.cursor/rules/workflow.mdc ]; then
   echo "📁 Creating .cursor/rules/workflow.mdc symlink..."
   if [ -f .cursor/rules/workflow.mdc ]; then
     echo "⚠️  .cursor/rules/workflow.mdc already exists. Backing up to workflow.mdc.backup"
     mv .cursor/rules/workflow.mdc .cursor/rules/workflow.mdc.backup
   fi
-  ln -s ../../${WORKFLOW_PATH}/llm_configs/cursor/workflow.mdc .cursor/rules/workflow.mdc
+  ln -s ../../${WORKFLOW_PATH}/llm_configs/cursor/.cursor/rules/workflow.mdc .cursor/rules/workflow.mdc
 else
   echo "ℹ️  Cursor workflow.mdc not found - skipping Cursor rules setup"
 fi
