@@ -37,8 +37,8 @@
 1. **Workflow necessity check**: Only ask user if request seems simple/direct. otherwise continue with workflow
 2. **If no user_config.json exists**: Read template → Create user_config.json
 3. **If onboarding_completed == false**: Follow onboarding.md → Ask department → Update config
-4. **If init_completed == false**: Load department init agent for guidance → Update config
-5. **When setup complete**: Analyze project → Create workflow-system/context/project_config.md
+4. **If init_completed == false**: Load department init agent for guidance → Ask user department-specific questions → **WAIT for user responses** → Update config with init_completed=true → **UNLOAD agent before proceeding**
+5. **When setup complete**: **ONLY AFTER agent unloaded** → Analyze project → Create workflow-system/context/project_config.md
 6. **Session creation**: Create workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
 7. **Start measurements**: Record session start time → Initialize revision counters
 
