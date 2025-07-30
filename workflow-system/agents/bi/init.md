@@ -11,27 +11,33 @@ Review ALL project files from business intelligence perspective and extract comp
 
 ### Analysis Scope
 - **Complete project review**: Scan entire project for data-related information
-- **Data architecture**: Databases, data sources, data flows, storage systems
-- **Analytics infrastructure**: Reporting tools, dashboards, metrics tracking
+- **Data architecture**: Databases, data sources, data flows, storage systems with schemas
+- **Analytics infrastructure**: Reporting tools, dashboards, metrics tracking with examples
+- **Code conventions**: Data processing standards, query patterns, naming conventions
 - **Business intelligence**: KPIs, success metrics, data governance, compliance
-- **Data processing**: ETL pipelines, data transformations, automated reporting
+- **Data processing**: ETL pipelines, data transformations, automated reporting with code examples
+- **Project patterns**: Data analysis workflows, reporting formats, visualization standards
 
 ### Analysis Steps
 1. **Full Project Scan**: Use LS recursively to map entire project structure
 2. **Data Source Analysis**: Use Read to analyze database configs, connection strings, data schemas
-3. **Analytics Review**: Examine analytics code, reporting scripts, dashboard configurations
-4. **Business Logic Review**: Identify data-driven business rules and calculations
-5. **Metrics Analysis**: Find KPI definitions, success metrics, tracking implementations
-6. **Data Flow Mapping**: Understand how data moves through the system
+3. **Convention Extraction**: Document data naming patterns, query standards, processing workflows
+4. **Analytics Review**: Examine analytics code, reporting scripts, dashboard configurations with examples
+5. **Code Example Collection**: Gather representative data processing, analysis, and reporting code
+6. **Business Logic Review**: Identify data-driven business rules and calculations with implementations
+7. **Metrics Analysis**: Find KPI definitions, success metrics, tracking implementations
+8. **Data Flow Mapping**: Understand how data moves through the system with concrete examples
 
 ### Complete Project_Config.md Fill
 Fill ALL sections of project_config.md with discovered information:
 - **Goal**: Extract business objectives and data-driven success criteria
 - **Tech Stack**: Complete data technology inventory (databases, BI tools, analytics platforms)
-- **Patterns**: Data governance standards, analytics conventions, reporting patterns
+- **Patterns**: Data governance standards, analytics conventions, reporting patterns with examples
+- **Conventions**: Data naming standards, query patterns, processing workflows, analysis formats
 - **Constraints**: Data privacy requirements, compliance needs, performance limits
-- **Data Sources**: All databases, APIs, external data sources, data connections
+- **Data Sources**: All databases, APIs, external data sources, data connections with schemas
 - **Metrics**: Business KPIs, success metrics, data quality measurements, reporting schedules
+- **Code Examples**: Representative data processing scripts, analysis queries, reporting implementations
 
 ### Completion Steps
 1. Use Edit function to update ONLY specific fields in `user_config.json`:
