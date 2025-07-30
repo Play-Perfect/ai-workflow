@@ -33,7 +33,8 @@
 ## Automatic Rules
 
 ### Phase: INIT → Status: READY
-1. **Workflow necessity check**: If user request seems simple/direct → Ask user "🤔 How should I handle this?\n1️⃣ AI workflow session?\n2️⃣ Quick flow?" → If user chooses 2, use project_config context only and exit workflow
+1. **Optional Welcome Message**: check if first time (not user_config.json)
+1. **Workflow necessity check**: If user request seems simple/direct
 2. **If no user_config.json exists**: Read template → Create user_config.json
 3. **If onboarding_completed == false**: Follow onboarding.md → Ask department → Update config
 4. **If init_completed == false**: Load department init agent for guidance → Update config
@@ -41,10 +42,12 @@
 6. **Session creation**: Create workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
 
 ### Phase: ANALYZE → Status: READY  
-1. **Query Jira**: If enable_jira_mcp → Ask user "Do you have a Jira ticket to reference? (provide ticket number or say 'none')" → **WAIT for user response** → If provided, fetch details via Atlassian MCP → Log context or "No Jira ticket referenced"
-2. **Search Confluence**: If enable_confluence_mcp → Use Atlassian MCP to search docs relevant to project/task (up to 2 attempts) → Log findings or "No relevant docs found"  
-3. **Load guide**: Read department from user_config.json → Load agents/{department}/analyzer.md
-4. **Set status**: Status = RUNNING
+1. **Query Jira**: If enable_jira_mcp → Ask user "Do you have a Jira ticket to reference? (provide ticket number or say 'none')" → **WAIT for user response** → If provided, fetch details via Atlassian MCP → Update session ReferenceTicket → Log context or "No Jira ticket referenced"
+2. **Setup Jira context**: If jira_project_key empty → Ask user "What's your Jira project key? (e.g., 'PROJ')" → Update preferences → If jira_username empty → Ask "What's your Jira username for assignments?" → Update preferences → Update session ProjectKey  
+3. **Create Jira ticket**: If no ReferenceTicket and have project_key → Ask user "Create main Jira ticket for this task? (Y/N)" → If yes, create ticket in project → Assign to jira_username → Add to current sprint → Update session ReferenceTicket
+4. **Search Confluence**: If enable_confluence_mcp → If confluence_space_key empty → Ask user "What's your Confluence space key? (or 'skip')" → Update preferences → Use Atlassian MCP to search docs in space (up to 2 attempts) → Log findings or "No relevant docs found"  
+5. **Load guide**: Read department from user_config.json → Load agents/{department}/analyzer.md
+6. **Set status**: Status = RUNNING
 
 ### Phase: ANALYZE → Status: COMPLETED
 1. **Assessment**: Ensure context gathered and requirements clear
@@ -61,7 +64,7 @@
 
 ### Phase: BLUEPRINT → Status: NEEDS_APPROVAL
 1. **Wait for approval**: User reviews and approves/requests changes
-2. **If approved**: If enable_jira_mcp → Ask user "Create Jira sub-tasks from blueprint? (provide parent ticket number, say 'create new', or 'skip')" → Create accordingly or skip → Set Status = COMPLETED
+2. **If approved**: If enable_jira_mcp → Ask user "Create Jira sub-tasks from blueprint? (provide parent ticket number, say 'create new', or 'skip')" → If creating tickets → Create in jira_project_key → Assign to jira_username → Add to current sprint → Update session ParentTicket and CreatedTickets → Set Status = COMPLETED
 3. **If changes needed**: Return to RUNNING status
 
 ### Phase: BLUEPRINT → Status: COMPLETED
@@ -75,7 +78,7 @@
 1. **Execute plan**: Follow approved blueprint
 2. **Testing**: Run tests after each change
 3. **Checkpoints**: Create rollback points
-4. **Jira updates**: If sub-tasks exist → Update progress
+4. **Jira updates**: If CreatedTickets exist → Update ticket progress and status
 5. **On completion**: Set Status = COMPLETED
 
 ### Phase: CONSTRUCT → Status: COMPLETED  
@@ -117,7 +120,8 @@
 - **Complex tasks (complexity 4-5)**: Add pre-validation step
 
 ## Communication Patterns
-- ❓ **WORKFLOW CHOICE**: "🤔 How should I handle this?\n1️⃣ AI workflow session?\n2️⃣ Quick flow?"
+- 👋 **FIRST TIME WELCOME**: "Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
+- ❓ **WORKFLOW CHOICE**: "🤔 How should I handle this?\nA) AI workflow session?\nB) Quick flow?"
 - 📁 **INIT**: "Setting up workflow..."
 - 🧠 **ANALYZE**: "Gathering context with {Department} guidance..."
 - 📋 **BLUEPRINT**: "Creating plan with {Department} guidance..."

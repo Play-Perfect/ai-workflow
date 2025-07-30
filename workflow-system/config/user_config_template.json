@@ -4,6 +4,11 @@
   "init_completed": false,
   "department": "",
   "role": "",
+  "preferences": {
+    "jira_project_key": "",
+    "jira_username": "",
+    "confluence_space_key": ""
+  },
   "settings": {
     "enable_jira_mcp": true,
     "enable_confluence_mcp": true,

@@ -9,5 +9,5 @@ This is an AI Multi-Agent Workflow System designed to transform AI workflows int
 ## Instructions
 
 **MUST follow @`workflow-system/config/rules.md`**
-
-All workflow logic, phases, rules, and instructions are defined in `workflow-system/config/rules.md`.
+- do not write any thing to user. just follow rules.
+- All workflow logic, phases, rules, and instructions are defined in `workflow-system/config/rules.md`.

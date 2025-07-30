@@ -12,6 +12,12 @@ SessionId: [Generated UUID]
 SessionStartTime: [ISO timestamp]  
 Context: []  
 
+## Jira Integration
+ReferenceTicket: null  
+CreatedTickets: []  
+ParentTicket: null  
+ProjectKey: null  
+
 ## Plan
 <!-- AI populates during BLUEPRINT phase -->
 

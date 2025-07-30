@@ -12,7 +12,6 @@ Execute this onboarding process when:
 
 ### Step 1: Department Selection
 **LLM Actions**:
-- Display: "🚀 Setting up AI workflow for your project..."
 - Display: "👥 Select your primary department:"
   - "1. 💻 Development"
   - "2. 📊 Product Management" 
@@ -40,13 +39,8 @@ Execute this onboarding process when:
 
 ### Step 3: Completion
 **LLM Actions**:
-- Display: "✅ Onboarding complete! Your workflow is configured for [Department] workflows."
-- Display: "🎯 Available agents:"
-  - "🔍 [Department]-Analyzer (context gathering)"
-  - "📋 [Department]-Blueprinter (planning)" 
-  - "🔨 [Department]-Constructor (implementation)"
-  - "✅ [Department]-Validator (quality assurance)"
-- Display: "🚀 Ready to proceed with project initialization..."
+- Display: "✅ thats all i need from you! Your workflow is configured for [Department] workflows."
+- Display: "Lets setup your project now..."
 - Return control to main workflow (INIT phase session creation)
 
 ## Validation Rules
