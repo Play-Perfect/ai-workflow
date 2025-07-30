@@ -10,7 +10,14 @@ Execute this onboarding process when:
 
 ## Onboarding Sequence
 
-### Step 1: Department Selection
+### Step 1: Username Collection
+**LLM Actions**:
+- Run: `git config --global user.name` to get git username
+- Display: "👤 Detected Git user: [GitName]"
+- Ask: "Is this correct? (Y/N) Or enter your preferred name:"
+- Wait for user response
+
+### Step 2: Department Selection
 **LLM Actions**:
 - Display: "👥 Select your primary department:"
   - "1. 💻 Development"
@@ -19,7 +26,7 @@ Execute this onboarding process when:
 - Ask: "Enter your choice (1, 2, or 3):"
 - do not procced until user response.
 
-### Step 2: Await For Confirmation
+### Step 3: Await For Confirmation
 **LLM Actions**
 - Await for user response for selecting department.
 - Must Wait for user response (1, 2, or 3). 
@@ -27,17 +34,18 @@ Execute this onboarding process when:
 - Store department choice as: "dev", "pm", or "bi"
 - Display confirmation: "✅ Selected: [Department Name]"
 
-### Step 2: Configuration Completion
+### Step 4: Configuration Completion
 **LLM Actions**:
 - Display: "⚙️ Saving your workflow configuration..."
 - Use Edit function to update ONLY specific fields in `workflow-system/user_config.json`:
+  - Set `"user_name"` to confirmed user name from Step 1
   - Set `"department"` to selected department ("dev", "pm", or "bi") 
   - Set `"onboarding_completed": true`
   - Set `"metadata.setup_date"` to current date YYYY-MM-DD
   - Set `"metadata.last_updated"` to current date YYYY-MM-DD
   - **IMPORTANT**: Leave all other fields unchanged (role, settings, init_completed)
 
-### Step 3: Completion
+### Step 5: Completion
 **LLM Actions**:
 - Display: "✅ thats all i need from you! Your workflow is configured for [Department] workflows."
 - Display: "Lets setup your project now..."
@@ -45,6 +53,7 @@ Execute this onboarding process when:
 
 ## Validation Rules
 
+- user_name must be non-empty string (from git or user input)
 - Department must be exactly: "dev", "pm", or "bi"
 - Settings must be boolean values (true/false)
 - onboarding_completed must be true when complete

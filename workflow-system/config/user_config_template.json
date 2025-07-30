@@ -2,6 +2,7 @@
   "_template_info": "TEMPLATE FILE: DO NOT MODIFY DIRECTLY. Copy to workflow-system/user_config.json during onboarding.",
   "onboarding_completed": false,
   "init_completed": false,
+  "user_name": "",
   "department": "",
   "role": "",
   "preferences": {

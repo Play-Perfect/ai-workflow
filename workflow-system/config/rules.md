@@ -110,8 +110,8 @@
 3. **Set status**: Status = RUNNING
 
 ### Phase: SUMMARY → Status: RUNNING
-1. **Generate measurements**: Use measurement agent to format session metrics including developer name
-2. **Generate changelog**: Use measurement agent to format detailed workflow summary including developer name
+1. **Generate measurements**: Use measurement agent to format session metrics including user_name
+2. **Generate changelog**: Use measurement agent to format detailed workflow summary including user_name
 3. **Upload measurements to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Find/create page "Measurements" in "AI WorkFlow" folder within confluence_space_key → Append formatted measurement summary
 4. **Upload changelog to Confluence**: If enable_confluence_mcp → Via Atlassian MCP → Create new page in "AI WorkFlow/Changelog" folder within confluence_space_key → Title: "{DevName}_{TaskName}_{YYYYMMDD}" → Add formatted changelog summary
 5. **Update Jira tickets**: If CreatedTickets exist → Mark all sub-tasks as Done via Atlassian MCP → Update main ticket to Completed
