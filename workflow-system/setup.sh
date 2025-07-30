@@ -69,9 +69,12 @@ fi
 
 # Create workflow config directory in project root (at same level as workflow-system)
 echo "📁 Creating workflow config directory in project root..."
-mkdir -p ../../ai-workflow-config
-mkdir -p ../../ai-workflow-config/sessions
-mkdir -p ../../ai-workflow-config/measurements
+echo "DEBUG: Current directory: $(pwd)"
+echo "DEBUG: About to create ../../ai-workflow-config"
+mkdir -p ../../ai-workflow-config || echo "ERROR: Failed to create ../../ai-workflow-config"
+mkdir -p ../../ai-workflow-config/sessions || echo "ERROR: Failed to create sessions"
+mkdir -p ../../ai-workflow-config/measurements || echo "ERROR: Failed to create measurements"
+echo "DEBUG: Checking if folder exists: $(ls -la ../../ | grep ai-workflow-config || echo 'NOT FOUND')"
 echo "✅ Workflow config directory created at project root level"
 
 # Create necessary directories for workflow system (keep for backward compatibility)
