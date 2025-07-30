@@ -4,14 +4,14 @@ Transform your AI workflow into a smart, multi-team system supporting Engineerin
 
 ## ✨ Key Features
 
-- **🤖 Phase-Based Agent System**: Specialized agents for each department (Dev, PM, BI, DevOps, Design, QA) across 4 workflow phases
-- **🔄 5-Phase Execution Model**: INIT → ANALYZE → BLUEPRINT → CONSTRUCT → VALIDATE
+- **🤖 Phase-Based Agent System**: Specialized agents for each department (Dev, PM, BI, DevOps, Design, QA) across 6 workflow phases
+- **🔄 6-Phase Execution Model**: INIT → ANALYZE → BLUEPRINT → CONSTRUCT → VALIDATE → SUMMARY
 - **🤝 Cross-Department Collaboration**: Seamless agent handoffs and collaborative planning
-- **🚀 Auto-Initialization**: Smart onboarding with project analysis and user profiling
+- **🚀 Auto-Initialization**: Smart onboarding with git name detection and user profiling
 - **🔗 MCP Full Integration**: Jira ticket management, Confluence documentation, Slack notifications
-- **📊 ROI Measurement**: Comprehensive tracking of productivity, time savings, and business impact
-- **🛠️ Dynamic Workflow Building**: Add custom steps with `/add-step` command during any phase
+- **📊 Comprehensive Measurement System**: Session metrics, phase durations, revision tracking with Confluence reporting
 - **📈 Real-time Progress Tracking**: Live Jira sub-task updates and session monitoring
+- **📋 Structured Reporting**: Automated measurements and changelog generation
 
 ## 🚀 Installation
 
@@ -27,181 +27,149 @@ git submodule update --init
 # 2. Run the setup script (creates symlinks for Claude Code and Cursor)
 ./workflow-system/setup.sh
 
-# 4. Start using the workflow - just ask Cursor/Claude for help!
+# 3. Start using the workflow - just ask Cursor/Claude for help!
 ```
 
 ### Auto-Initialization
 
 On first use, the LLM will automatically:
-1. **User Onboarding**: Ask about your department, role, and preferences
+1. **User Onboarding**: Detect git username and ask about department preferences
 2. **Project Analysis**: Scan your codebase and detect technology stack
 3. **Configuration Setup**: Create personalized workflow configuration
-4. **Ready to Use**: Execute 4-phase workflows immediately
+4. **Ready to Use**: Execute 6-phase workflows immediately
 
-## 🔄 Detailed Workflow Description
+## 🔄 6-Phase Execution Model
 
-### 5-Phase Execution Model
-
-#### 🔧 Phase 1: INIT
+### 🔧 Phase 1: INIT
 - Auto-initialization check: Verifies user configuration and project setup
-- User onboarding: Department selection, role definition, preference setting
+- User onboarding: Git name detection, department selection, preference setting
 - Project analysis: Codebase scanning, technology detection, context gathering
-- Session creation: Initialize new workflow session with unique ID
+- Session creation: Initialize new workflow session with unique ID and measurement tracking
 
-#### 🔍 Phase 2: ANALYZE  
+### 🔍 Phase 2: ANALYZE  
 - Select appropriate Analyzer Agent based on user's department
-- Auto-query Jira tickets for context
+- Auto-query Jira tickets for context (with MCP integration)
 - Search Confluence documentation
 - Gather department-specific requirements
-- Map dependencies and constraints
+- Track phase duration and revisions
 
-#### 📝 Phase 3: BLUEPRINT
+### 📝 Phase 3: BLUEPRINT
 - Select appropriate Blueprinter Agent based on user's department
-- Create detailed implementation plan
+- Create detailed implementation plan in session state
 - Present plan for user approval
-- **Revision Loop**: Handle user feedback and plan modifications
+- **Revision Loop**: Handle user feedback and plan modifications (tracked)
 - Generate Jira sub-tasks automatically (after final approval)
-- Enable cross-department collaboration
 
-#### 🔨 Phase 4: CONSTRUCT
+### 🔨 Phase 4: CONSTRUCT
 - Select appropriate Constructor Agent based on user's department
-- Execute the approved plan
-- Real-time progress tracking
-- **User Feedback Loop**: Accept and implement user-requested changes during construction
-- Update Jira sub-tasks automatically
-- Handle cross-team dependencies
+- Execute the approved plan step by step
+- Update corresponding Jira sub-tasks after each step completion
+- Real-time progress tracking with checkpoint creation
+- Handle rollback scenarios
 
-#### 🧪 Phase 5: VALIDATE
+### 🧪 Phase 5: VALIDATE
 - Select appropriate Validator Agent based on user's department
 - Comprehensive validation and testing
-- Create Confluence documentation
-- Send Slack completion notifications
-- Archive session with measurements
+- Create technical documentation
+- Quality assurance verification
 
-### ⚙️ Unified Execution Rules
+### 📊 Phase 6: SUMMARY
+- **Measurement Agent**: Load specialized measurement formatting guidance
+- **Generate Reports**: Create standardized measurement and changelog summaries
+- **Confluence Integration**: 
+  - Append measurements to shared "AI WorkFlow/Measurements" page
+  - Create individual changelog in "AI WorkFlow/Changelog" folder
+- **Jira Completion**: Mark all tickets as Done/Completed
+- **Local Archive**: Update project changelog
+- **Notifications**: Send Slack completion summary
 
-The workflow system uses automatic rules that execute before agent guidance loads:
+## 📊 Comprehensive Measurement System
 
-#### 🔄 Automatic Rule Execution
+### Measurement Data Collected
+- **Session Metrics**: Total duration, start/end times, developer name
+- **Phase Tracking**: Duration and revision count for each phase
+- **Success Indicators**: Completion status, test results, rollback usage
+- **Jira Integration**: Tickets created/updated, sub-task completion
+
+### Confluence Reporting Structure
+```
+{confluence_space_key}/
+└── AI WorkFlow/
+    ├── Measurements (single page - all session summaries)
+    └── Changelog/
+        ├── {DevName}_{TaskName}_{YYYYMMDD}
+        ├── {DevName}_{TaskName}_{YYYYMMDD}
+        └── ...
+```
+
+### Measurement Benefits
+- **Company Insights**: Track if AI workflow improves development efficiency
+- **Process Optimization**: Identify which phases need improvement
+- **Team Performance**: Department-specific success patterns
+- **ROI Analysis**: Time savings and productivity improvements
+
+## ⚙️ Unified Execution Rules
+
+The workflow system uses automatic rules that execute before agent guidance:
+
+### 🔄 Automatic Rule Execution
 
 **INIT Phase → Status: READY**
-- User config creation and onboarding
-- Department initialization  
+- User config creation and onboarding with git name detection
+- Department initialization and measurement setup
 - Project analysis and configuration
-- Session creation with unique timestamps
+- Session creation with measurement initialization
 
 **ANALYZE Phase → Status: READY**
+- Phase timing start
 - **Jira ticket integration**: Auto-query tickets for context
 - **Confluence search**: Find relevant documentation
 - Load department-specific analyzer guide
 
-**BLUEPRINT Phase → Status: NEEDS_APPROVAL**
-- Blueprint archiving before new plan creation
-- Implementation plan creation and user approval
-- **Jira sub-task creation**: Generate tasks from approved blueprint
+**BLUEPRINT Phase → Status: RUNNING**
+- Create detailed implementation plan in session state ## Plan section
+- Present plan to user for approval
+- **Revision tracking**: Increment counters when changes needed
 
 **CONSTRUCT Phase → Status: RUNNING**
-- Plan execution with testing and checkpoints  
-- Jira sub-task progress updates
-- Adaptive complexity handling
+- Plan execution with testing and checkpoints
+- **Jira sub-task updates**: Update corresponding tickets after each step
+- Progress tracking with rollback capabilities
 
 **VALIDATE Phase → Status: RUNNING**
-- Quality assurance and testing
-- Confluence documentation creation
-- Slack completion notifications
-- Session archiving
+- Quality assurance and comprehensive testing
+- Technical documentation creation
+- Validation completion
 
-#### 🤖 Continuous Automation Rules
+**SUMMARY Phase → Status: RUNNING**
+- **Measurement generation**: Use measurement agent templates
+- **Confluence uploads**: Separate steps for measurements and changelog
+- **Jira completion**: Mark all tickets as Done
+- **Final archiving**: Local and remote documentation
 
-**Log Management**: Auto-rotate when logs exceed 5K characters  
-**Pattern Reuse**: Leverage successful approaches from archived sessions  
-**Failure Recovery**: Rollback to checkpoints on construction failures  
-**Metrics Tracking**: Record duration, corrections, and accuracy metrics  
+### 🤖 Continuous Automation Rules
+
+**Metrics Tracking**: Record phase durations, revision counts, success rates
 **Config Updates**: Preserve existing values during field-specific updates
+**Log Management**: Auto-rotate when logs exceed 5K characters
+**Pattern Reuse**: Leverage successful approaches from archived sessions
+**Failure Recovery**: Rollback to checkpoints on construction failures
 
-### 🧭 Advisory Agent System
+## 🧭 Advisory Agent System
 
 **Agent Role**: Provide guidance and recommendations, not control workflow execution
+
+**Specialized Agents**:
+- **Department Agents**: Dev, PM, BI, DevOps, Design, QA agents for each phase
+- **Measurement Agent**: Standardized reporting and Confluence formatting
 
 **Agent Format**:
 - **Purpose**: Help with phase-specific objectives
 - **Approach**: Collaborative and advisory tone
 - **Focus Areas**: Domain-specific best practices and considerations
-- **Guidance**: Suggestions for quality, approach, and technical decisions
+- **Templates**: Standardized measurement and changelog formats
 
-**Example - Dev-Analyzer Guide**:
-```markdown
-**Role**: Advisory guide for development teams during analysis phase
-**Purpose**: Help gather technical context and understand requirements
-**Suggested Focus Areas**:
-- Architecture patterns and technology stack
-- Performance, security, and scalability considerations  
-- Testing strategy and code quality standards
-**Remember**: You provide guidance. Automatic rules handle Jira queries and workflow progression.
-```
-
-**Key Distinction**: Rules execute automatically, Agents provide advisory guidance after rules complete.
-
-### 🔄 Workflow Visualization
-
-```mermaid
-graph TD
-    A[🚀 User Request] --> B[🔧 INIT Phase]
-    
-    B --> B1[Check Configuration]
-    B1 --> B2[User Onboarding]
-    B2 --> B3[Project Analysis]
-    B3 --> B4[Session Creation]
-    
-    B4 --> C[🔍 ANALYZE Phase]
-    
-    C --> C1[Select Analyzer Agent]
-    C1 --> C2[Auto-Query Jira Tickets]
-    C2 --> C3[Search Confluence Docs]
-    C3 --> C4[Gather Context & Requirements]
-    
-    C4 --> D[📝 BLUEPRINT Phase]
-    
-    D --> D1[Select Blueprinter Agent]
-    D1 --> D2[Create Implementation Plan]
-    D2 --> D3[Present Plan to User]
-    D3 --> D4{✅ User Approval}
-    D4 -->|Approved| D5[Generate Jira Sub-tasks]
-    D4 -->|Needs Changes| D2
-    
-    D5 --> E[🔨 CONSTRUCT Phase]
-    
-    E --> E1[Select Constructor Agent]
-    E1 --> E2[Execute Implementation]
-    E2 --> E3{User Feedback}
-    E3 -->|Satisfied| E4[Update Jira Sub-tasks]
-    E3 -->|Changes Needed| E2
-    
-    E4 --> F[🧪 VALIDATE Phase]
-    
-    F --> F1[Select Validator Agent]
-    F1 --> F2[Quality Assurance & Testing]
-    F2 --> F3[Create Documentation]
-    F3 --> F4[Final Validation]
-    
-    F4 --> G[🎉 Completion]
-    
-    G --> G1[📚 Confluence Summary]
-    G --> G2[💬 Slack Notifications]
-    G --> G3[📊 Archive Measurements]
-    
-    style A fill:#e1f5fe
-    style G fill:#e8f5e8
-    style D4 fill:#fff3e0
-    style C1 fill:#f3e5f5
-    style D1 fill:#f3e5f5
-    style E1 fill:#f3e5f5
-    style F1 fill:#f3e5f5
-```
-
-### 📁 File Structure
-
-The system creates a `workflow-system/` folder containing:
+## 📁 File Structure
 
 ```
 your-project/
@@ -218,45 +186,24 @@ your-project/
     │   ├── onboarding.md      # User onboarding process
     │   └── user_config_template.json
     ├── agents/                # Department-specific agents
-    │   ├── dev/
-    │   ├── pm/
-    │   ├── bi/
-    │   └── ...
+    │   ├── dev/               # Development team agents
+    │   ├── pm/                # Product management agents
+    │   ├── bi/                # Business intelligence agents
+    │   ├── devops/            # DevOps team agents
+    │   ├── design/            # Design team agents
+    │   ├── qa/                # QA team agents
+    │   └── default/           # Default measurement agent
+    │       └── measurement.md # Measurement formatting templates
     └── sessions/              # Session tracking files
         └── workflow_state_YYYYMMDD_HHMMSS_feature.md
 ```
 
-### 🛠️ Dynamic Workflow Customization
+## 🔗 Integration Points
 
-Use the `/add-step` command to add custom workflow steps:
-
-```
-User: "/add-step create security review checklist"
-System: "Which phase? 1.ANALYZE 2.BLUEPRINT 3.CONSTRUCT 4.VALIDATE"
-User: "4"
-System: "✅ Added to VALIDATE phase in Development Agent"
-```
-
-### 📊 Comprehensive Measurement System
-
-**Local Tracking** (`workflow-system/sessions/`):
-- Session duration and phase metrics
-- User corrections and LLM accuracy issues
-- **Revision tracking**: Blueprint revision cycles, construction feedback loops
-- Workflow completion status and business impact
-- ROI calculations and productivity metrics
-
-**Shared Analytics** (Confluence Dashboard):
-- Cross-team workflow performance
-- Department-specific success rates
-- Time savings and efficiency improvements
-- Business impact measurements
-
-### 🔗 Integration Points
-
-- **Jira**: Automatic ticket querying, sub-task creation, progress tracking
-- **Confluence**: Documentation search, session summary creation
-- **Slack**: Completion notifications with time tracking and results
+- **Jira**: Automatic ticket querying, sub-task creation, step-by-step progress tracking
+- **Confluence**: Documentation search, measurement aggregation, individual changelog creation
+- **Slack**: Completion notifications with comprehensive session summaries
+- **Git Integration**: Username detection for developer tracking
 - **Custom MCPs**: Extensible through Model Context Protocol servers
 
 ## 🚀 Future Vision
@@ -274,3 +221,13 @@ The setup script creates symlinks so Claude Code can find the configuration file
 - `CLAUDE.md` → `workflow-system/config/CLAUDE.md`
 
 This keeps all workflow logic centralized in the submodule while making it accessible to Claude Code.
+
+### How does measurement tracking work?
+
+The system automatically tracks:
+- **Session duration** and phase-specific timing
+- **Revision counts** when plans need changes
+- **Success metrics** including test results and completion status
+- **Developer attribution** for team performance analysis
+
+All measurements are formatted using the measurement agent and uploaded to Confluence for company-wide analysis.
