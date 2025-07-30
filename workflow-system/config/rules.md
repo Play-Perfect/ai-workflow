@@ -45,11 +45,12 @@
 ### Phase: ANALYZE → Status: READY  
 1. **Start phase timing**: Record ANALYZE phase start time
 2. **Query Jira**: If enable_jira_mcp → Ask user "Do you have a Jira ticket to reference? (provide ticket number or say 'none')" → **WAIT for user response** → If provided, fetch details via Atlassian MCP → Update session ReferenceTicket → Log context or "No Jira ticket referenced"
-3. **Setup Jira context**: If jira_project_key empty → Ask user "What's your Jira project key? (e.g., 'PROJ')" → Update preferences → If jira_username empty → Ask "What's your Jira username for assignments?" → Update preferences → Update session ProjectKey  
-4. **Create Jira ticket**: If no ReferenceTicket and have project_key → Ask user "Create main Jira ticket for this task? (Y/N)" → If yes, create ticket in project → Assign to jira_username → Add to current sprint → Update session ReferenceTicket
-5. **Search Confluence**: If enable_confluence_mcp → If confluence_space_key empty → Ask user "What's your Confluence space key? (or 'skip')" → Update preferences → Use Atlassian MCP to search docs in space (up to 2 attempts) → Log findings or "No relevant docs found"  
-6. **Load guide**: Read department from user_config.json → Load agents/{department}/analyzer.md
-7. **Set status**: Status = RUNNING
+3. **Setup Jira context**: If jira_project_key empty → Ask user "What's your Jira project key? (e.g., 'PROJ')" → **WAIT for user response** → Update preferences → If jira_username empty → Ask "What's your Jira username for assignments?" → **WAIT for user response** → Update preferences → Update session ProjectKey  
+4. **Create Jira ticket**: If no ReferenceTicket and have project_key → Ask user "Create main Jira ticket for this task? (Y/N)" → **WAIT for user response** → If yes, create ticket in project → Assign to jira_username → Add to current sprint → Update session ReferenceTicket
+5. **Search Confluence**: If enable_confluence_mcp → If confluence_space_key empty → Ask user "What's your Confluence space key? (or 'skip')" → **WAIT for user response** → Update preferences → Use Atlassian MCP to search docs in space (up to 2 attempts) → Log findings or "No relevant docs found"  
+6. **Complete user interactions**: Ensure ALL user responses from steps 2-5 are collected and processed
+7. **Load guide**: Read department from user_config.json → Load agents/{department}/analyzer.md → **ONLY AFTER all user interactions complete**
+8. **Set status**: Status = RUNNING
 
 ### Phase: ANALYZE → Status: COMPLETED
 1. **Assessment**: Ensure context gathered and requirements clear
@@ -67,8 +68,8 @@
 2. **Present plan**: Show plan to user → Set Status = NEEDS_APPROVAL
 
 ### Phase: BLUEPRINT → Status: NEEDS_APPROVAL
-1. **Wait for approval**: User reviews and approves/requests changes
-2. **If approved**: If enable_jira_mcp → Ask user "Create Jira sub-tasks from blueprint? (provide parent ticket number, say 'create new', or 'skip')" → If creating tickets → Create in jira_project_key → Assign to jira_username → Add to current sprint → Update session ParentTicket and CreatedTickets → Set Status = COMPLETED
+1. **Wait for approval**: User reviews and approves/requests changes → **WAIT for user response**
+2. **If approved**: If enable_jira_mcp → Ask user "Create Jira sub-tasks from blueprint? (provide parent ticket number, say 'create new', or 'skip')" → **WAIT for user response** → If creating tickets → Create in jira_project_key → Assign to jira_username → Add to current sprint → Update session ParentTicket and CreatedTickets → Set Status = COMPLETED
 3. **If changes needed**: Increment revision counter → Return to RUNNING status
 
 ### Phase: BLUEPRINT → Status: COMPLETED
@@ -122,6 +123,20 @@
 ### Phase: SUMMARY → Status: COMPLETED
 1. **Notifications**: Send Slack notifications (if enabled)
 2. **Complete**: Workflow finished successfully
+
+## Execution Order Rules (Critical)
+
+### Sequential Step Execution
+- **NEVER execute steps in parallel**: Each numbered step must complete entirely before the next step begins
+- **User interaction blocking**: Any step with "Ask user" and "**WAIT for user response**" MUST complete before proceeding
+- **Agent loading constraint**: Agents can ONLY be loaded AFTER all user interactions in that phase are complete
+- **Status changes**: Status changes can ONLY occur after ALL steps in current status are complete
+
+### Step Completion Requirements
+- **Ask user**: Present question to user
+- **WAIT for user response**: STOP all processing until user provides response
+- **Process response**: Complete all response processing before next step
+- **No parallel agent loading**: Agents cannot start providing guidance while user questions are pending
 
 ## Continuous Rules (Always Active)
 
