@@ -28,6 +28,8 @@ Review ALL project files from business intelligence perspective and extract comp
 7. **Metrics Analysis**: Find KPI definitions, success metrics, tracking implementations
 8. **Data Flow Mapping**: Understand how data moves through the system with concrete examples
 
+**Approach**: Perform autonomous, comprehensive analysis without asking questions. Extract patterns and examples from actual code.
+
 ### Complete Project_Config.md Fill
 Fill ALL sections of project_config.md with discovered information:
 - **Goal**: Extract business objectives and data-driven success criteria

@@ -28,6 +28,8 @@ Review ALL project files from product management perspective and extract compreh
 7. **Requirements Extraction**: Find product requirements in any format (docs, comments, issues)
 8. **Example Collection**: Gather representative code examples for UI patterns and features
 
+**Approach**: Perform autonomous, thorough analysis without asking questions. Extract concrete examples and patterns from actual code.
+
 ### Complete Project_Config.md Fill
 Fill ALL sections of project_config.md with discovered information:
 - **Goal**: Extract complete product vision, objectives, and success criteria

@@ -10,7 +10,6 @@
 - Analyze everything systematically without asking questions
 - Extract concrete examples and patterns from actual code
 - Document findings as a comprehensive development knowledge base
-- Only ask 1-2 short questions if something is genuinely unclear
 
 ## Required Analysis Tasks
 
@@ -79,7 +78,5 @@ Provide a concise summary covering:
 - **Conventions**: Naming, formatting, and structural patterns with examples
 - **Workflow**: Key commands for development (build, test, lint, deploy)
 - **Key Insights**: 2-3 critical things developers need to know about this project
-
-**Only ask questions if**: Critical information is genuinely unclear after thorough analysis. Maximum 2 short, specific questions.
 
 **Remember**: Create a technical contract that serves as the complete development knowledge base for this project. The automatic rules will handle project_config.md creation and user_config.json updates based on your analysis.
