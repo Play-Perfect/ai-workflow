@@ -35,14 +35,14 @@ git submodule update --init
 After setup, initialize the workflow system by asking your LLM:
 
 ```
-init
+start
 ```
 
 This will trigger the auto-initialization process.
 
 ### Auto-Initialization Process
 
-When you run the `init` command, the system will automatically:
+When you run the `start` command, the system will automatically:
 1. **User Onboarding**: Detect git username and ask about department preferences
 2. **Project Analysis**: Scan your codebase and detect technology stack
 3. **Configuration Setup**: Create personalized workflow configuration
@@ -184,12 +184,15 @@ The workflow system uses automatic rules that execute before agent guidance:
 ```
 your-project/
 ├── CLAUDE.md                  # Main LLM instructions (symlinked)
+├── ai-workflow-config/        # User configs (in project root, can be committed)
+│   ├── user_config.json       # Generated user configuration
+│   ├── project_config.md      # Generated project analysis
+│   ├── sessions/              # Session tracking files
+│   └── measurements/          # Measurement data
 └── workflow-system/           # Git submodule
     └── workflow-system/       # Complete workflow system
-        ├── user_config.json       # Generated user configuration
         ├── context/               # Templates and context
         │   ├── workflow_state.md  # Session state template
-        │   ├── project_config.md  # Generated project analysis
         │   └── project_config_template.md
         ├── config/                # Core configuration files
         │   ├── rules.md           # Unified workflow rules
@@ -207,8 +210,6 @@ your-project/
         ├── llm_configs/           # LLM-specific configurations
         │   └── claude/
         │       └── CLAUDE.md      # Main LLM instructions
-        ├── sessions/              # Session tracking files
-        ├── measurements/          # Measurement data
         └── setup.sh              # Setup script
 ```
 
