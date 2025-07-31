@@ -43,8 +43,8 @@
 7. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
 8. **Start measurements**: Record session start time → Initialize revision counters
 
-### Phase: INIT → Status: COMPLETED (Init Command Only)
-1. **Init command completion**: If triggered by 'init' slash command and all setup complete → Display completion message: "🎉 Welcome to Play-Perfect AI Workflow! Your system is now configured and ready to use. You can start any development task and the workflow will guide you through the process!" → **STOP workflow** (do not proceed to ANALYZE)
+### Phase: INIT → Status: COMPLETED (Start Command Only)
+1. **Start command completion**: If triggered by '/start' slash command and all setup complete → Display completion message: "🎉 Welcome to Play-Perfect AI Workflow! Your system is now configured and ready to use. You can start any development task and the workflow will guide you through the process!" → **STOP workflow** (do not proceed to ANALYZE)
 
 ### Phase: ANALYZE → Status: READY  
 1. **Start phase timing**: Record ANALYZE phase start time
@@ -179,7 +179,7 @@
 - 🎉 **COMPLETED**: "Workflow completed!"
 
 ## Slash Commands
-- **init**: Trigger AI Multi-Agent Workflow System initialization → Complete onboarding and init flow → Display completion message: "🎉 Welcome to Play-Perfect AI Workflow! Your system is now configured and ready to use. You can start any development task and the workflow will guide you through the process!"
+- **/start**: Trigger AI Multi-Agent Workflow System initialization → Complete onboarding and init flow → Display completion message: "🎉 Welcome to Play-Perfect AI Workflow! Your system is now configured and ready to use. You can start any development task and the workflow will guide you through the process!"
 - **/update-config [section] [content]**: Update ai-workflow-config/project_config.md with new conventions or standards
 - **/add-step [description]**: Add custom step to current workflow phase
 
