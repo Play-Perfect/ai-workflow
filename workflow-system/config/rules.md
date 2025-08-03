@@ -4,7 +4,7 @@
 
 ### **PHASE** = Workflow Stage
 - **Purpose**: Defines WHAT work needs to be done
-- **Values**: INIT, ANALYZE, BLUEPRINT, CONSTRUCT, VALIDATE, SUMMARY
+- **Values**: ONBOARDING, INIT, ANALYZE, BLUEPRINT, CONSTRUCT, VALIDATE, SUMMARY
 - **Control**: System-controlled sequential progression
 
 ### **STATUS** = Progress State within Phase
@@ -33,15 +33,21 @@
 
 ## Follow Below Automatic Rules
 
+### Phase: ONBOARDING → Status: READY
+1. **Welcome Message**: Display first-time welcome: "👋 Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
+2. **User Config Creation**: If no user_config.json exists → Read template → Create ai-workflow-config/user_config.json
+3. **Onboarding Process**: Follow onboarding.md → Ask department → Update config with onboarding_completed=true
+4. **Set Phase**: Set Phase=INIT, Status=READY
+
+### Phase: ONBOARDING → Status: COMPLETED (Onboarding Command Only)
+1. **Onboarding command completion**: If triggered by 'onboarding' command and setup complete → Display completion message: "✅ Onboarding complete! Your user profile is configured. Use 'start' to initialize the project analysis." → **STOP workflow** (do not proceed to INIT)
+
 ### Phase: INIT → Status: READY
-1. **Welcome Message**: If no user_config.json exists → Display first-time welcome: "👋 Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
-2. **If no user_config.json exists**: Read template → Create ai-workflow-config/user_config.json
-3. **If onboarding_completed == false**: Follow onboarding.md → Ask department → Update config
-4. **If init_completed == false**: Load department init agent for guidance → Ask user department-specific questions → **WAIT for user responses** → Update config with init_completed=true → **UNLOAD agent before proceeding**
-5. **Workflow necessity check**: Only ask user if request seems simple/direct. otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
-6. **When setup complete**: **ONLY AFTER agent unloaded** → Analyze project → Create ai-workflow-config/project_config.md
-7. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
-8. **Start measurements**: Record session start time → Initialize revision counters
+1. **Project Analysis**: Load department init agent for guidance → **AUTONOMOUS PROJECT ANALYSIS** (no user questions) → Agent analyzes codebase and updates config → Update config with init_completed=true → **UNLOAD agent before proceeding**
+2. **Project Config Creation**: **ONLY AFTER agent unloaded** → Create ai-workflow-config/project_config.md
+3. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
+4. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
+5. **Start measurements**: Record session start time → Initialize revision counters
 
 ### Phase: INIT → Status: COMPLETED (Start Command Only)
 1. **Start command completion**: If triggered by 'start' command and all setup complete → Display completion message: "🎉 Welcome to Play-Perfect AI Workflow! Your system is now configured and ready to use. You can start any development task and the workflow will guide you through the process!" → **STOP workflow** (do not proceed to ANALYZE)
@@ -170,7 +176,8 @@
 ## Communication Patterns
 - 👋 **FIRST TIME WELCOME**: "Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
 - ❓ **WORKFLOW CHOICE**: "🤔 How should I handle this?\nA) AI workflow session?\nB) Quick flow?"
-- 📁 **INIT**: "Setting up workflow..."
+- 👤 **ONBOARDING**: "Setting up your user profile..."
+- 📁 **INIT**: "Analyzing project and configuring workflow..."
 - 🧠 **ANALYZE**: "Gathering context with {Department} guidance..."
 - 📋 **BLUEPRINT**: "Creating plan with {Department} guidance..."
 - 🛠️ **CONSTRUCT**: "Implementing with {Department} guidance..."
@@ -179,7 +186,8 @@
 - 🎉 **COMPLETED**: "Workflow completed!"
 
 ## Slash Commands
-- **start**: Trigger AI Multi-Agent Workflow System initialization → Complete onboarding and init flow → Display completion message: "🎉 Welcome to Play-Perfect AI Workflow! Your system is now configured and ready to use. You can start any development task and the workflow will guide you through the process!"
+- **start**: Smart initialization trigger → If no user_config.json or onboarding_completed==false → Set Phase=ONBOARDING, Status=READY → Otherwise → Set Phase=INIT, Status=READY → Complete initialization flow → Display completion message
+- **onboarding**: User profile setup only → Set Phase=ONBOARDING, Status=READY → Complete onboarding and stop → Display: "✅ Onboarding complete! Use 'start' to initialize project analysis."
 - **/update-config [section] [content]**: Update ai-workflow-config/project_config.md with new conventions or standards
 - **/add-step [description]**: Add custom step to current workflow phase
 
