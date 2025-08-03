@@ -23,13 +23,23 @@
 - **Format**: Suggestions, focus areas, recommended approaches
 
 ## Files Structure
-- `./ai-workflow-config/user_config.json` – Generated user configuration (in project root)
+- `./ai-workflow-config/user_config.json` – Generated user configuration (private - not committed)
 - `./workflow-system/workflow-system/config/user_config_template.json` – Template for user config
-- `./ai-workflow-config/project_config.md` – Generated project analysis (in project root)
+- `./ai-workflow-config/project_config.md` – Generated project analysis (shared - committed to git)
 - `./workflow-system/workflow-system/context/project_config_template.md` – Template for project config
-- `./ai-workflow-config/sessions/workflow_state_*.md` – Session tracking files (in project root)
+- `./ai-workflow-config/sessions/workflow_state_*.md` – Session tracking files (private - not committed)
+- `./ai-workflow-config/measurements/` – Measurement data (private - not committed)
 - `./workflow-system/workflow-system/context/workflow_state.md` – Template for session tracking
 - `./workflow-system/workflow-system/agents/{department}/{phase}.md` – Advisory agent guides
+
+## Multi-Developer Team Support
+**Shared Files** (committed to git):
+- `ai-workflow-config/project_config.md` - Project analysis shared by all team members
+
+**Private Files** (not committed - add to .gitignore):
+- `ai-workflow-config/user_config.json` - Individual user preferences  
+- `ai-workflow-config/sessions/` - Individual user sessions
+- `ai-workflow-config/measurements/` - Individual user measurements
 
 ## Follow Below Automatic Rules
 

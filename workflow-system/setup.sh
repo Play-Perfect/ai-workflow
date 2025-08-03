@@ -80,6 +80,28 @@ mkdir -p "${PROJECT_ROOT}/ai-workflow-config/measurements" || echo "ERROR: Faile
 echo "DEBUG: Checking if folder exists: $(ls -la "${PROJECT_ROOT}" | grep ai-workflow-config || echo 'NOT FOUND')"
 echo "✅ Workflow config directory created at project root level: ${PROJECT_ROOT}/ai-workflow-config"
 
+# Smart .gitignore management for multi-dev teams
+echo "📝 Setting up .gitignore for multi-developer support..."
+GITIGNORE_FILE="${PROJECT_ROOT}/.gitignore"
+if [ -f "$GITIGNORE_FILE" ]; then
+  if ! grep -q "ai-workflow-config/user_config.json" "$GITIGNORE_FILE"; then
+    echo "" >> "$GITIGNORE_FILE"
+    echo "# AI Workflow - Private user files (not shared between developers)" >> "$GITIGNORE_FILE"
+    echo "ai-workflow-config/user_config.json" >> "$GITIGNORE_FILE"
+    echo "ai-workflow-config/sessions/" >> "$GITIGNORE_FILE"
+    echo "ai-workflow-config/measurements/" >> "$GITIGNORE_FILE"
+    echo "✅ Added AI workflow private files to .gitignore"
+  else
+    echo "ℹ️  AI workflow entries already exist in .gitignore"
+  fi
+else
+  echo "# AI Workflow - Private user files (not shared between developers)" > "$GITIGNORE_FILE"
+  echo "ai-workflow-config/user_config.json" >> "$GITIGNORE_FILE"
+  echo "ai-workflow-config/sessions/" >> "$GITIGNORE_FILE"
+  echo "ai-workflow-config/measurements/" >> "$GITIGNORE_FILE"
+  echo "✅ Created .gitignore with AI workflow private files"
+fi
+
 # Create necessary directories for workflow system (keep for backward compatibility)
 echo "📁 Creating workflow directories..."
 mkdir -p ${WORKFLOW_PATH}/sessions
@@ -104,7 +126,11 @@ echo "   Cursor MCP: .cursor/mcp.json (if created)"
 echo "   Cursor rules: .cursor/rules/workflow.mdc (if created)"
 echo ""
 echo "📊 Workflow system ready!"
-echo "   User configs: ai-workflow-config/ (in your project root)"
-echo "   Sessions: ai-workflow-config/sessions/"
-echo "   Measurements: ai-workflow-config/measurements/"
+echo "   Config folder: ai-workflow-config/ (in your project root)"
+echo "   Shared: ai-workflow-config/project_config.md (committed to git)"
+echo "   Private: user_config.json, sessions/, measurements/ (not committed)"
 echo "   Rules: ${WORKFLOW_PATH}/config/rules.md"
+echo ""
+echo "👥 Multi-developer team ready:"
+echo "   ✅ Shared project analysis in git"
+echo "   ✅ Private user files automatically ignored"
