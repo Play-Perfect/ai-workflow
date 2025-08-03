@@ -50,7 +50,9 @@
 4. **Set Phase**: Set Phase=INIT, Status=READY
 
 ### Phase: ONBOARDING → Status: COMPLETED (Onboarding Command Only)
-1. **Onboarding command completion**: If triggered by 'onboarding' command and setup complete → Display completion message: "✅ Onboarding complete! Your user profile is configured. Use 'start' to initialize the project analysis." → **STOP workflow** (do not proceed to INIT)
+1. **Onboarding command completion**: If triggered by 'onboarding' command and setup complete → Display completion message: "✅ All setup! Play-Perfect AI Workflow is ready for you. 
+
+**Recommended: Start new conversation to start work**" → **STOP workflow** (do not proceed to INIT)
 
 ### Phase: INIT → Status: READY
 1. **Project Analysis**: Load department init agent for guidance → **AUTONOMOUS PROJECT ANALYSIS** (no user questions) → Agent analyzes codebase and updates config → Update config with init_completed=true → **UNLOAD agent before proceeding**
