@@ -163,6 +163,7 @@
 ### Slash Command Handling
 - **/update-config [section] [content]**: Update specific section in ai-workflow-config/project_config.md → Preserve existing format and other sections
 - **/add-step [description]**: Load agents/default/add-step.md for guidance → Add custom step to current phase in workflow-system/config/rules.md → Use same format as existing steps
+- **/help** or **/commands**: Load agents/default/help.md for guidance → Display available support commands and usage information
 
 ### Config Updates
 - **Any config update**: NEVER overwrite entire file → ONLY update specific fields → PRESERVE existing values
@@ -200,6 +201,7 @@
 - **onboarding**: User profile setup only → Set Phase=ONBOARDING, Status=READY → Complete onboarding and stop → Display: "✅ Onboarding complete! Use 'start' to initialize project analysis."
 - **/update-config [section] [content]**: Update ai-workflow-config/project_config.md with new conventions or standards
 - **/add-step [description]**: Add custom step to current workflow phase
+- **/help** or **/commands**: Display available support commands and their usage → Load agents/default/help.md for guidance
 
 ## Department Support
 - **dev**: Engineering workflows with technical focus
