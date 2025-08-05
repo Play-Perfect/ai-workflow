@@ -15,20 +15,18 @@ Transform your AI workflow into a smart, multi-team system supporting Engineerin
 
 ## 🚀 Installation
 
-### Quick Setup via Git Submodule
-
-Add AI workflow to any project:
+Navigate to your project directory and add AI workflow in just 2 commands:
 
 ```bash
-# 1. Add the AI workflow system as a git submodule
-git submodule add https://github.com/Play-Perfect/ai-workflow.git workflow-system
-git submodule update --init
+# From within your project directory:
+# 1. Clone the workflow system
+git clone https://github.com/Play-Perfect/ai-workflow.git workflow-system
 
-# 2. Run the setup script (automatically detects nested structure)
-./workflow-system/workflow-system/setup.sh
-
-# 3. Start using the workflow - just ask Cursor/Claude for help!
+# 2. Run setup and start using immediately!
+./workflow-system/setup.sh
 ```
+
+That's it! Now just ask Cursor/Claude: `start`
 
 ### Initialize Your Workflow
 
@@ -189,28 +187,27 @@ your-project/
 │   ├── project_config.md      # Generated project analysis
 │   ├── sessions/              # Session tracking files
 │   └── measurements/          # Measurement data
-└── workflow-system/           # Git submodule
-    └── workflow-system/       # Complete workflow system
-        ├── context/               # Templates and context
-        │   ├── workflow_state.md  # Session state template
-        │   └── project_config_template.md
-        ├── config/                # Core configuration files
-        │   ├── rules.md           # Unified workflow rules
-        │   ├── onboarding.md      # User onboarding process
-        │   └── user_config_template.json
-        ├── agents/                # Department-specific agents
-        │   ├── dev/               # Development team agents
-        │   ├── pm/                # Product management agents
-        │   ├── bi/                # Business intelligence agents
-        │   ├── devops/            # DevOps team agents
-        │   ├── design/            # Design team agents
-        │   ├── qa/                # QA team agents
-        │   └── default/           # Default measurement agent
-        │       └── measurement.md # Measurement formatting templates
-        ├── llm_configs/           # LLM-specific configurations
-        │   └── claude/
-        │       └── CLAUDE.md      # Main LLM instructions
-        └── setup.sh              # Setup script
+└── workflow-system/           # Cloned workflow system
+    ├── context/               # Templates and context
+    │   ├── workflow_state.md  # Session state template
+    │   └── project_config_template.md
+    ├── config/                # Core configuration files
+    │   ├── rules.md           # Unified workflow rules
+    │   ├── onboarding.md      # User onboarding process
+    │   └── user_config_template.json
+    ├── agents/                # Department-specific agents
+    │   ├── dev/               # Development team agents
+    │   ├── pm/                # Product management agents
+    │   ├── bi/                # Business intelligence agents
+    │   ├── devops/            # DevOps team agents
+    │   ├── design/            # Design team agents
+    │   ├── qa/                # QA team agents
+    │   └── default/           # Default measurement agent
+    │       └── measurement.md # Measurement formatting templates
+    ├── llm_configs/           # LLM-specific configurations
+    │   └── claude/
+    │       └── CLAUDE.md      # Main LLM instructions
+    └── setup.sh              # Setup script
 ```
 
 ## 🔗 Integration Points
@@ -231,12 +228,14 @@ This system serves as the foundation for company-wide AI automation, transformin
 
 ### What does the setup script do?
 
-The setup script automatically detects nested or standard structure and creates symlinks so Claude Code can find the configuration files:
+The setup script automatically creates symlinks and configuration files so Claude/Cursor can find the workflow system:
 
-- `CLAUDE.md` → `workflow-system/workflow-system/llm_configs/claude/CLAUDE.md` (nested)
-- or `CLAUDE.md` → `workflow-system/llm_configs/claude/CLAUDE.md` (standard)
+- `CLAUDE.md` → `workflow-system/llm_configs/claude/CLAUDE.md` 
+- `.cursor/rules/workflow.mdc` → `workflow-system/llm_configs/cursor/.cursor/rules/workflow.mdc` (if available)
+- `.mcp.json` and `.cursor/mcp.json` MCP configurations
+- Creates `ai-workflow-config/` directory for project-specific data
 
-This keeps all workflow logic centralized in the submodule while making it accessible to Claude Code.
+This keeps all workflow logic centralized while making it accessible to your AI assistants.
 
 ### How does measurement tracking work?
 
