@@ -43,17 +43,10 @@
 
 ## Follow Below Automatic Rules
 
-### Phase: ONBOARDING → Status: READY (Onboarding Command Only)
-1. **Welcome Message**: Display first-time welcome: "👋 Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
-2. **User Config Creation**: If no user_config.json exists → Read template → Create ai-workflow-config/user_config.json
-3. **Onboarding Process**: Follow onboarding.md → Ask department → Update config with onboarding_completed=true
-4. **Project Analysis**: Load department init agent for guidance → **AUTONOMOUS PROJECT ANALYSIS** (no user questions) → Agent analyzes codebase and updates config → Update config with init_completed=true → **UNLOAD agent before proceeding**
-5. **Project Config Creation**: **ONLY AFTER agent unloaded** → Create ai-workflow-config/project_config.md
-6. **Set Phase**: Set Phase=ONBOARDING, Status=COMPLETED
-
-### Phase: ONBOARDING → Status: COMPLETED (Onboarding Command Only)
-1. **Onboarding command completion**: If triggered by 'onboarding' command and setup complete → Display completion message: "✅ All setup! Play-Perfect AI Workflow is ready for you. **Recommended: Start new conversation to start work**" 
-2, → **STOP workflow** (do not proceed to INIT phase)
+### Phase: ONBOARDING (Start Command Only)
+1. **Check Prerequisites**: Only when user calls start command → If no user_config.json exists or onboarding_completed=false → Load onboarding.md and follow complete workflow
+2. **Execute Onboarding**: Follow workflow-system/config/onboarding.md for complete onboarding process
+3. **Skip if Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
 1. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly

@@ -7,8 +7,15 @@ This file contains the detailed onboarding sequence for new users of the AI Mult
 Execute this onboarding process when:
 - `workflow-system/user_config.json` template exists but `"onboarding_completed": false`
 - User requests to reset/reconfigure their workflow setup
+- Start command is called and onboarding is needed
 
 ## Onboarding Sequence
+
+### Step 0: Initial Setup (Start Command Only)
+**LLM Actions**:
+- Display first-time welcome: "👋 Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
+- If no user_config.json exists → Read template → Create ai-workflow-config/user_config.json
+- Set Phase=ONBOARDING, Status=READY
 
 ### Step 1: Username Collection
 **LLM Actions**:
@@ -49,7 +56,33 @@ Execute this onboarding process when:
 **LLM Actions**:
 - Display: "✅ thats all i need from you! Your workflow is configured for [Department] workflows."
 - Display: "Lets setup your project now..."
-- Return control to main workflow (INIT phase session creation)
+
+### Step 6: Project Analysis
+**LLM Actions**:
+- Load department init agent for guidance
+- **AUTONOMOUS PROJECT ANALYSIS** (no user questions)
+- Agent analyzes codebase and updates config
+- Update config with init_completed=true
+- **UNLOAD agent before proceeding**
+
+### Step 7: Project Config Creation
+**LLM Actions**:
+- **ONLY AFTER agent unloaded**
+- Create ai-workflow-config/project_config.md
+- Set Phase=ONBOARDING, Status=COMPLETED
+
+### Step 8: Final Completion
+**LLM Actions**:
+- If setup complete → Display completion message: "✅ All setup! Play-Perfect AI Workflow is ready for you. **Recommended: Start new conversation to start work**"
+- **STOP workflow** (do not proceed to INIT phase)
+- If triggered by 'start' command → Return control to main workflow (INIT phase session creation)
+
+## Execution Notes
+
+- **Sequential execution**: Each step must complete entirely before the next step begins
+- **User interaction blocking**: Steps with "Ask user" and "Wait for user response" MUST complete before proceeding
+- **Agent loading constraint**: Agents can ONLY be loaded AFTER all user interactions are complete
+- **Status changes**: Status changes can ONLY occur after ALL steps in current phase are complete
 
 ## Validation Rules
 
