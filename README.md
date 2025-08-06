@@ -23,7 +23,7 @@ Navigate to your project directory and add AI workflow in just 2 commands:
 git clone https://github.com/Play-Perfect/ai-workflow.git workflow-system
 
 # 2. Run setup and start using immediately!
-./workflow-system/setup.sh
+./workflow-system/workflow-system/setup.sh
 ```
 
 That's it! Now just ask Cursor/Claude: `start`
