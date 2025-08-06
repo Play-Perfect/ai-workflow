@@ -1,5 +1,9 @@
 # AI Multi-Agent Workflow System
 
+## ⚠️ CRITICAL: Always Follow Exact Steps and Instructions
+
+**MANDATORY**: This workflow system requires strict adherence to all rules, steps, and instructions defined below. Do not deviate from the specified workflow, timing, or sequence. All steps must be executed in the exact order specified without exception.
+
 ## Core Definitions
 
 ### **PHASE** = Workflow Stage
@@ -80,8 +84,8 @@
 
 ### Phase: BLUEPRINT → Status: NEEDS_APPROVAL
 1. **Wait for approval**: User reviews and approves/requests changes → **WAIT for user response**
-2. **If approved**: If enable_jira_mcp → Ask user "Create Jira sub-tasks from blueprint? (provide parent ticket number, say 'create new', or 'skip')" → **WAIT for user response** → If creating tickets → Create in jira_project_key → Assign to jira_username → Add to current sprint → Update session ParentTicket and CreatedTickets → Set Status = COMPLETED
-3. **If changes needed**: Increment revision counter → Return to RUNNING status
+- **If approved**: If enable_jira_mcp → Ask user "Create Jira sub-tasks from blueprint? (provide parent ticket number, say 'create new', or 'skip')" → **WAIT for user response** → If creating tickets → Create in jira_project_key → Assign to jira_username → Add to current sprint → Update session ParentTicket and CreatedTickets → Set Status = COMPLETED
+- **If changes needed**: Increment revision counter → Return to RUNNING status
 
 ### Phase: BLUEPRINT → Status: COMPLETED
 1. **Record metrics**: Calculate BLUEPRINT phase duration → Record revision count
