@@ -28,6 +28,23 @@ git clone https://github.com/Play-Perfect/ai-workflow.git workflow-system
 
 That's it! Now just ask Cursor/Claude: `start`
 
+## 🔄 Updating the Workflow System
+
+To get the latest features and improvements, update your workflow system:
+
+```bash
+# Navigate to your workflow system directory
+cd workflow-system
+
+# Pull the latest changes
+git pull origin main
+
+# Re-run setup to apply any new configurations
+./workflow-system/setup.sh
+```
+
+**Note**: Your personal configurations in `ai-workflow-config/` will be preserved during updates.
+
 ### Initialize Your Workflow
 
 After setup, initialize the workflow system by asking your LLM:
