@@ -47,19 +47,18 @@
 1. **Welcome Message**: Display first-time welcome: "👋 Welcome to Play-Perfect AI Workflow! Let's get started! 🚀"
 2. **User Config Creation**: If no user_config.json exists → Read template → Create ai-workflow-config/user_config.json
 3. **Onboarding Process**: Follow onboarding.md → Ask department → Update config with onboarding_completed=true
-4. **Set Phase**: Set Phase=INIT, Status=READY
+4. **Project Analysis**: Load department init agent for guidance → **AUTONOMOUS PROJECT ANALYSIS** (no user questions) → Agent analyzes codebase and updates config → Update config with init_completed=true → **UNLOAD agent before proceeding**
+5. **Project Config Creation**: **ONLY AFTER agent unloaded** → Create ai-workflow-config/project_config.md
+6. **Set Phase**: Set Phase=INIT, Status=READY
 
 ### Phase: ONBOARDING → Status: COMPLETED (Onboarding Command Only)
-1. **Onboarding command completion**: If triggered by 'onboarding' command and setup complete → Display completion message: "✅ All setup! Play-Perfect AI Workflow is ready for you. 
-
-**Recommended: Start new conversation to start work**" → **STOP workflow** (do not proceed to INIT)
+1. **Onboarding command completion**: If triggered by 'onboarding' command and setup complete → Display completion message: "✅ All setup! Play-Perfect AI Workflow is ready for you. **Recommended: Start new conversation to start work**" 
+2, → **STOP workflow** (do not proceed to INIT)
 
 ### Phase: INIT → Status: READY
-1. **Project Analysis**: Load department init agent for guidance → **AUTONOMOUS PROJECT ANALYSIS** (no user questions) → Agent analyzes codebase and updates config → Update config with init_completed=true → **UNLOAD agent before proceeding**
-2. **Project Config Creation**: **ONLY AFTER agent unloaded** → Create ai-workflow-config/project_config.md
-3. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
-4. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
-5. **Start measurements**: Record session start time → Initialize revision counters
+1. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
+2. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md → Set Phase=ANALYZE, Status=READY
+3. **Start measurements**: Record session start time → Initialize revision counters
 
 ### Phase: INIT → Status: COMPLETED (Start Command Only)
 1. **Start command completion**: If triggered by 'start' command and all setup complete → Display completion message: "🎉 Welcome to Play-Perfect AI Workflow! Your system is now configured and ready to use. You can start any development task and the workflow will guide you through the process!" → **STOP workflow** (do not proceed to ANALYZE)
