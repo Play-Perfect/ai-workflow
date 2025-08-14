@@ -4,7 +4,7 @@
 
 ## Your Mission
 
-**Purpose**: Create comprehensive product specification and user experience plan based on analysis findings, using the established PRD template and planning HTML mockups when needed.
+**Purpose**: Create strategic product plan with general concepts and user experience overview based on analysis findings, using the established PRD template framework for structure but focusing on high-level planning rather than detailed specification.
 
 **Your approach**:
 - Always fetch and use the PRD template generated during init phase
@@ -62,15 +62,15 @@
 
 ## Planning Output Structure
 
-Create detailed plan following PRD template structure:
-- **Objective Section**: Problem statement and hypothesis using template format
-- **User Segments**: Target users based on project's user framework
-- **Success Metrics**: KPIs mapped to established measurement categories
-- **User Flows**: Step-by-step journey with conversion touchpoints
-- **Config Parameters**: Backend configuration and economy integration
-- **Testing Strategy**: A/B testing plan and validation approach
-- **Implementation Plan**: Development approach and rollout strategy
-- **HTML Mockup Plan**: If requested, detailed mockup specifications
+Create strategic plan with general concepts (not full PRD):
+- **Core Concept**: High-level problem statement and solution approach
+- **Target Users**: Key user segments and their needs
+- **Success Indicators**: Primary metrics and business outcomes
+- **User Journey Overview**: Main flow and key touchpoints
+- **Technical Considerations**: Backend integration and configuration needs
+- **Validation Approach**: Testing strategy and success criteria
+- **Implementation Strategy**: Development phases and rollout approach
+- **HTML Mockup Plan**: If requested, visual specification strategy
 
 ## Quality Standards
 
