@@ -1,6 +1,6 @@
 # AI Multi-Agent Workflow System
 
-> ⚠️ **IMPORTANT**: This system is optimized for **Anthropic Claude models (Claude 3.5 Sonnet recommended)**. While it may work with other LLMs, best performance and feature compatibility are achieved with Claude models.
+> ⚠️ **IMPORTANT**: This system is optimized for **Anthropic Claude models (Claude Sonnet Thinking 4 recommended)**. While it may work with other LLMs, best performance and feature compatibility are achieved with Claude models.
 
 ## 📑 Table of Contents
 | Section | Description |
