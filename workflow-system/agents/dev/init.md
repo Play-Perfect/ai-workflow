@@ -14,7 +14,7 @@
 ## Required Analysis Tasks
 
 ### 1. Complete Project Structure Mapping
-- Use Glob and LS tools to map the entire directory structure
+- Use Glob and LS tools to map the entire directory structure (**EXCLUDE workflow-system folder** - ignore all workflow-system content during analysis)
 - Identify all file types, languages, and key directories
 - Document folder organization patterns and naming conventions
 - Map component relationships and module dependencies
@@ -54,7 +54,7 @@
 
 **Execute these steps sequentially**:
 
-1. **Project Scan**: Use Glob patterns to discover all files and structure
+1. **Project Scan**: Use Glob patterns to discover all files and structure (**EXCLUDE workflow-system folder** - ignore all workflow-system content)
 2. **Config Analysis**: Read all configuration files (package.json, etc.)
 3. **Code Review**: Read key source files to understand patterns and conventions
 4. **Example Extraction**: Collect concrete code examples showing project patterns
@@ -79,4 +79,4 @@ Provide a concise summary covering:
 - **Workflow**: Key commands for development (build, test, lint, deploy)
 - **Key Insights**: 2-3 critical things developers need to know about this project
 
-**Remember**: Create a technical contract that serves as the complete development knowledge base for this project. The automatic rules will handle project_config.md creation and user_config.json updates based on your analysis.
+**Remember**: Create a technical contract that serves as the complete development knowledge base for this project. **IMPORTANT**: Ignore workflow-system folder and all its contents during project analysis. The automatic rules will handle project_config.md creation and user_config.json updates based on your analysis.

@@ -19,7 +19,7 @@ Review ALL project files from business intelligence perspective and extract comp
 - **Project patterns**: Data analysis workflows, reporting formats, visualization standards
 
 ### Analysis Steps
-1. **Full Project Scan**: Use LS recursively to map entire project structure
+1. **Full Project Scan**: Use LS recursively to map entire project structure (**EXCLUDE workflow-system folder** - ignore all workflow-system content during analysis)
 2. **Data Source Analysis**: Use Read to analyze database configs, connection strings, data schemas
 3. **Convention Extraction**: Document data naming patterns, query standards, processing workflows
 4. **Analytics Review**: Examine analytics code, reporting scripts, dashboard configurations with examples
@@ -28,7 +28,7 @@ Review ALL project files from business intelligence perspective and extract comp
 7. **Metrics Analysis**: Find KPI definitions, success metrics, tracking implementations
 8. **Data Flow Mapping**: Understand how data moves through the system with concrete examples
 
-**Approach**: Perform autonomous, comprehensive analysis without asking questions. Extract patterns and examples from actual code.
+**Approach**: Perform autonomous, comprehensive analysis without asking questions. Extract patterns and examples from actual code. **IMPORTANT**: Ignore workflow-system folder and all its contents during project analysis.
 
 ### Complete Project_Config.md Fill
 Fill ALL sections of project_config.md with discovered information:

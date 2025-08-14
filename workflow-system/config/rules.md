@@ -30,11 +30,14 @@
 - `./ai-workflow-config/user_config.json` – Generated user configuration (private - not committed)
 - `./workflow-system/workflow-system/config/user_config_template.json` – Template for user config
 - `./ai-workflow-config/project_config.md` – Generated project analysis (shared - committed to git)
-- `./workflow-system/workflow-system/context/project_config_template.md` – Template for project config
+- `./workflow-system/workflow-system/context/project_config_template.md` – Template for project config (default)
+- `./workflow-system/workflow-system/context/pm_project_config_template.md` – Template for PM project config (PM department)
 - `./ai-workflow-config/sessions/workflow_state_*.md` – Session tracking files (private - not committed)
 - `./ai-workflow-config/measurements/` – Measurement data (private - not committed)
 - `./workflow-system/workflow-system/context/workflow_state.md` – Template for session tracking
 - `./workflow-system/workflow-system/agents/{department}/{phase}.md` – Advisory agent guides
+- `./product/prd_template.md` – Generated PRD template from user examples (PM department)
+- `./product/mockup_examples/` – Visual reference examples for HTML mockups (PM department)
 
 ## Multi-Developer Team Support
 **Shared Files** (committed to git):
@@ -50,7 +53,8 @@
 ### Phase: ONBOARDING (Start Command Only)
 1. **Check Prerequisites**: Only when user calls start command → If no user_config.json exists or onboarding_completed=false → Load onboarding.md and follow complete workflow
 2. **Execute Onboarding**: Follow workflow-system/config/onboarding.md for complete onboarding process
-3. **Skip if Complete**: If onboarding already completed → Skip to INIT phase
+3. **Complete Onboarding - finish**: Finish conversation and do not continue
+4. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
 1. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly

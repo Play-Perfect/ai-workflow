@@ -26,7 +26,7 @@
 - Document visual patterns and design principles for HTML mockup generation
 
 ### 3. Complete Product Context Mapping
-- Use Glob and LS tools to map project structure from product perspective
+- Use Glob and LS tools to map project structure from product perspective (**EXCLUDE workflow-system folder** - ignore all workflow-system content during analysis)
 - Identify user-facing features, business logic, monetization touchpoints
 - Document conversion flows, user journeys, and engagement patterns
 - Map feature relationships and user experience dependencies
@@ -55,7 +55,7 @@
 
 1. **PRD Template Setup**: Request user examples and generate PRD template
 2. **Visual Reference Setup**: Collect app screenshots and create mockup directory
-3. **Product Structure Scan**: Use Glob patterns to discover product-relevant files
+3. **Product Structure Scan**: Use Glob patterns to discover product-relevant files (**EXCLUDE workflow-system folder** - ignore all workflow-system content)
 4. **Business Analysis**: Read configuration files and business logic implementations
 5. **Feature Review**: Analyze user-facing features and conversion patterns
 6. **Integration Discovery**: Identify analytics, experimentation, and business tools
@@ -80,4 +80,4 @@ Provide a concise summary covering:
 - **Success Metrics**: KPI framework and measurement approaches
 - **Key Insights**: 2-3 critical things product managers need to know about this project
 
-**Remember**: Create a product management contract that serves as the complete PM knowledge base for this project. The automatic rules will handle project_config.md creation using the PM template and user_config.json updates based on your analysis.
+**Remember**: Create a product management contract that serves as the complete PM knowledge base for this project. **IMPORTANT**: Ignore workflow-system folder and all its contents during project analysis. The automatic rules will handle project_config.md creation using the PM template and user_config.json updates based on your analysis.

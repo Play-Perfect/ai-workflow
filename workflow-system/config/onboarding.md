@@ -55,11 +55,11 @@ Execute this onboarding process when:
 ### Step 5: Completion
 **LLM Actions**:
 - Display: "✅ thats all i need from you! Your workflow is configured for [Department] workflows."
-- Display: "Lets setup your project now..."
+- Display: "NEXT: Lets setup your project now..."
 
 ### Step 6: Project Analysis
 **LLM Actions**:
-- Load department init agent for guidance
+- Load department-specific init agent: `agents/{department}/init.md` (where {department} is from user_config.json)
 - **AUTONOMOUS PROJECT ANALYSIS** (no user questions)
 - Agent analyzes codebase and updates config
 - Update config with init_completed=true
