@@ -7,7 +7,7 @@
 **Purpose**: Perform autonomous, thorough analysis of the entire project to create a complete technical contract of how this codebase works.
 
 **Your approach**:
-- Analyze everything systematically without asking questions
+- **AUTONOMOUS ANALYSIS**: Analyze everything systematically without asking questions
 - Extract concrete examples and patterns from actual code
 - Document findings as a comprehensive development knowledge base
 
@@ -79,4 +79,7 @@ Provide a concise summary covering:
 - **Workflow**: Key commands for development (build, test, lint, deploy)
 - **Key Insights**: 2-3 critical things developers need to know about this project
 
-**Remember**: Create a technical contract that serves as the complete development knowledge base for this project. **IMPORTANT**: Ignore workflow-system folder and all its contents during project analysis. The automatic rules will handle project_config.md creation and user_config.json updates based on your analysis.
+**Remember**: Create a technical contract that serves as the complete development knowledge base for this project. **IMPORTANT**: 
+- **NO USER QUESTIONS**: Perform completely autonomous analysis without asking any questions
+- Ignore workflow-system folder and all its contents during project analysis
+- The automatic rules will handle project_config.md creation and user_config.json updates based on your analysis

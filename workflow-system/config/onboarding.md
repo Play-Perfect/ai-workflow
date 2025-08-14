@@ -60,8 +60,7 @@ Execute this onboarding process when:
 ### Step 6: Project Analysis
 **LLM Actions**:
 - Load department-specific init agent: `agents/{department}/init.md` (where {department} is from user_config.json)
-- **AUTONOMOUS PROJECT ANALYSIS** (no user questions)
-- Agent analyzes codebase and updates config
+- Agent analyzes codebase and updates config (may ask department-specific questions if required)
 - Update config with init_completed=true
 - **UNLOAD agent before proceeding**
 
