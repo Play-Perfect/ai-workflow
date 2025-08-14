@@ -1,5 +1,20 @@
 # AI Multi-Agent Workflow System
 
+> ⚠️ **IMPORTANT**: This system is optimized for **Anthropic Claude models (Claude 3.5 Sonnet recommended)**. While it may work with other LLMs, best performance and feature compatibility are achieved with Claude models.
+
+## 📑 Table of Contents
+| Section | Description |
+|---------|-------------|
+| [🚀 Quick Installation](#-quick-installation) | Simple 2-command setup for everyone |
+| [✨ Key Features](#-key-features) | What this system can do |
+| [🔄 6-Phase Execution](#-6-phase-execution-model) | How the workflow works |
+| [📊 Measurement System](#-comprehensive-measurement-system) | Track your productivity |
+| [🔗 Integrations](#-integration-points) | Jira, Confluence, Slack support |
+| [📁 File Structure](#-file-structure) | How files are organized |
+| [❓ FAQ](#-common-questions) | Common questions answered |
+
+---
+
 Transform your AI workflow into a smart, multi-team system supporting Engineering, Product Management, Business Intelligence, DevOps, Design, and QA departments through specialized agents and dynamic customization.
 
 ## ✨ Key Features
@@ -13,20 +28,27 @@ Transform your AI workflow into a smart, multi-team system supporting Engineerin
 - **📈 Real-time Progress Tracking**: Live Jira sub-task updates and session monitoring
 - **📋 Structured Reporting**: Automated measurements and changelog generation
 
-## 🚀 Installation
+## 🚀 Quick Installation
 
-Navigate to your project directory and add AI workflow in just 2 commands:
+### Step 1: Copy 2 Commands
+Open your terminal/command prompt and navigate to your project folder, then copy and paste these 2 commands:
 
 ```bash
-# From within your project directory:
-# 1. Clone the workflow system
 git clone https://github.com/Play-Perfect/ai-workflow.git workflow-system
-
-# 2. Run setup and start using immediately!
 ./workflow-system/workflow-system/setup.sh
 ```
 
-That's it! Now just ask Cursor/Claude: `start`
+### Step 2: Start Using
+That's it! Now just ask Claude/Cursor: **`start`**
+
+---
+
+### 🔍 What These Commands Do:
+1. **First command**: Downloads the AI workflow system into your project
+2. **Second command**: Sets up configuration files so Claude can find everything
+3. **`start` command**: Begins your AI-powered workflow automatically
+
+✅ **Non-developers**: Just copy-paste the 2 commands above - no technical knowledge needed!
 
 ## 🔄 Updating the Workflow System
 
