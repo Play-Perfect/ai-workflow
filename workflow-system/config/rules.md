@@ -208,7 +208,3 @@
 ## Department Support
 - **dev**: Engineering workflows with technical focus
 - **pm**: Product management with business requirements
-- **bi**: Business intelligence with data analysis
-- **devops**: Infrastructure and deployment workflows
-- **design**: UX/UI and design system workflows
-- **qa**: Quality assurance and testing workflows

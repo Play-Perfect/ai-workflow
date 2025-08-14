@@ -59,13 +59,13 @@ _This is a PM-oriented template file. DO NOT modify directly._
 [TEMPLATE: A/B testing methodology, statistical validation, and experiment design patterns]
 
 ## Analytics & Tracking Standards
-[TEMPLATE: Event tracking, dashboard requirements, and business intelligence integration]
+[TEMPLATE: Event tracking, dashboard requirements, and business analytics integration]
 
 ## Integration Points & Tools
 - Project Management: [TEMPLATE: Jira epic/story structure if enabled]
 - Documentation: [TEMPLATE: Confluence space organization if enabled]
 - Communication: [TEMPLATE: Slack channels and stakeholder communication if enabled]
-- Analytics: [TEMPLATE: BI tools and tracking platforms]
+- Analytics: [TEMPLATE: Business analytics tools and tracking platforms]
 
 ## Stakeholder Framework
 - Department: Product Management

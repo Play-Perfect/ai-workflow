@@ -46,7 +46,7 @@
 - Capture user onboarding, engagement loops, and retention strategies
 
 ### 6. Stakeholder & Integration Review
-- Find integration points with analytics, experimentation, business intelligence tools
+- Find integration points with analytics, experimentation, and business tools
 - Identify communication channels (Jira, Confluence, Slack configurations)
 - Document stakeholder workflows and approval processes
 - Review project management and product delivery patterns
