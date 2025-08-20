@@ -4,3 +4,6 @@
 .claude/
 CLAUDE.md
 ai_workflow_plan.md
+
+# Release automation script
+release.sh
