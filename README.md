@@ -5,10 +5,10 @@
 ## 📑 Table of Contents
 | Section | Description |
 |---------|-------------|
-| [🚀 Quick Installation](#-quick-installation) | Simple 2-command setup for everyone |
 | [✨ Key Features](#-key-features) | What this system can do |
+| [🚀 Quick Installation](#-quick-installation) | Simple 2-command setup for everyone |
+| [📝 Available Commands](#-available-commands) | Commands to control the workflow system |
 | [🔄 6-Phase Execution](#-6-phase-execution-model) | How the workflow works |
-| [📊 Measurement System](#-comprehensive-measurement-system) | Track your productivity |
 | [🔗 Integrations](#-integration-points) | Jira, Confluence, Slack support |
 | [📁 File Structure](#-file-structure) | How files are organized |
 | [❓ FAQ](#-common-questions) | Common questions answered |
@@ -39,18 +39,38 @@ git clone https://github.com/Play-Perfect/ai-workflow.git workflow-system
 ```
 
 ### Step 2: Start Using
-That's it! Now just ask Claude/Cursor: **`start`**
+That's it!
+Now just write in Claude/Cursor chat:
+```
+ start
+```
+
+## 📝 Available Commands
+
+### Basic Commands
+- **`start`** - One-time setup and initialization of the AI workflow system. Creates user profile, analyzes project, and sets up configuration. 
+  ```
+  start
+  ```
+
+### Configuration Commands  
+- **`/update-config [section] [content]`** - Add general project instructions, coding standards, or context to your project configuration for better AI guidance.
+  ```
+  /update-config coding-standards "Use TypeScript strict mode and ESLint rules"
+  /update-config architecture "Use src/components/ for React components, src/services/ for API calls, src/utils/ for helpers. Each component must have interface Props and default export."
+  ```
+
+- **`/add-step [description]`** - Add custom workflow steps to the current phase for specialized requirements or team processes.
+  ```
+  /add-step "Create Jira subtask via MCP for code review approval before merging to main branch"
+  /add-step "Generate OpenAPI spec using 'swagger-jsdoc' and update docs/api.yml after endpoint changes"
+  ```
+
+- **`/help`** - Display available commands and usage information.
 
 ---
 
-### 🔍 What These Commands Do:
-1. **First command**: Downloads the AI workflow system into your project
-2. **Second command**: Sets up configuration files so Claude can find everything
-3. **`start` command**: Begins your AI-powered workflow automatically
-
-✅ **Non-developers**: Just copy-paste the 2 commands above - no technical knowledge needed!
-
-## 🔄 Updating the Workflow System
+## 🔄 Updating Version
 
 To get the latest features and improvements, update your workflow system:
 
@@ -64,18 +84,6 @@ git pull origin main
 # Re-run setup to apply any new configurations
 ./workflow-system/setup.sh
 ```
-
-**Note**: Your personal configurations in `ai-workflow-config/` will be preserved during updates.
-
-### Initialize Your Workflow
-
-After setup, initialize the workflow system by asking your LLM:
-
-```
-start
-```
-
-This will trigger the auto-initialization process.
 
 ### Auto-Initialization Process
 
