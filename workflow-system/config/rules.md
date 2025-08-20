@@ -199,7 +199,7 @@
 - 🎉 **COMPLETED**: "Workflow completed!"
 
 ## Slash Commands
-- **start**: Smart initialization trigger → If no user_config.json or onboarding_completed==false → Set Phase=ONBOARDING, Status=READY → Otherwise → Set Phase=INIT, Status=READY → Complete initialization flow → Display completion message
+- **start**: Smart initialization trigger → If no user_config.json or onboarding_completed==false → Set Phase=ONBOARDING, Status=READY → Otherwise → Display "Workflow already setup. Are you sure you want to re-start? (Y/N)" → **WAIT for user response** → If Yes → Set Phase=ONBOARDING, Status=READY → Complete initialization flow → If No → Display "Setup cancelled"
 - **onboarding**: User profile setup only → Set Phase=ONBOARDING, Status=READY → Complete onboarding and stop → Display: "✅ Onboarding complete! Use 'start' to initialize project analysis."
 - **/update-config [section] [content]**: Update ai-workflow-config/project_config.md with new conventions or standards
 - **/add-step [description]**: Add custom step to current workflow phase
