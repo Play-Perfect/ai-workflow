@@ -75,8 +75,8 @@ Now just write in Claude/Cursor chat:
 To get the latest features and improvements, update your workflow system:
 
 ```bash
-# Navigate to your workflow system directory
-cd workflow-system
+# Navigate to workflow-system root directory (works from anywhere)
+cd $(pwd | grep -o '.*workflow-system' | head -1)
 
 # Fetch latest tags and force update to latest version
 git fetch --tags --force

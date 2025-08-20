@@ -163,10 +163,11 @@
 
 ### VERSION_CHECK_PROCEDURE
 **MANDATORY STEPS - Execute in exact order:**
-1. **Display to user**: "🔍 Checking for workflow system updates..."
+1. **Must Display to user**: "🔍 Checking for workflow system updates..."
 2. **Get current version**: Run `git describe --tags --exact-match HEAD 2>/dev/null || echo "development"` in workflow-system directory → Show current version to user
-3. **Get latest release version**: Use WebFetch tool with URL `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` and prompt "Extract just the tag_name field value from this JSON response" → Show latest release version to user
-4. **Compare and notify**: If current version is "development" → Display "🔄 You're on development version. Latest release is {latest_version}. Update with: cd workflow-system && git fetch --tags --force && git reset --hard latest && git checkout latest && ./workflow-system/setup.sh" → If current version != latest release version → Display "🔄 New version {latest_version} available! Update with: cd workflow-system && git fetch --tags --force && git reset --hard latest && git checkout latest && ./workflow-system/setup.sh" → Otherwise → Display "✅ You're using the latest version ({current_version})!"
+3. **Fetch latest tags**: Run `git fetch --tags --quiet` in workflow-system directory
+4. **Get latest version**: Run `git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1` in workflow-system directory → Show latest version to user
+5. **Compare and notify**: If current version is "development" → Display "🔄 You're on development version. Latest release is {latest_version}. Update with: cd $(pwd | grep -o '.*workflow-system' | head -1) && git fetch --tags --force && git reset --hard latest && git checkout latest && ./workflow-system/setup.sh" → If current version != latest version → Display "🔄 New version {latest_version} available! Update with: cd $(pwd | grep -o '.*workflow-system' | head -1) && git fetch --tags --force && git reset --hard latest && git checkout latest && ./workflow-system/setup.sh" → Otherwise → Display "✅ You're using the latest version ({current_version})!"
 
 ## Session Start Rules (Always Check First)
 
@@ -182,7 +183,7 @@
 - **/update-config [section] [content]**: Update specific section in ai-workflow-config/project_config.md → Preserve existing format and other sections
 - **/add-step [description]**: Load agents/default/add-step.md for guidance → Add custom step to current phase in workflow-system/config/rules.md → Use same format as existing steps
 - **/help** or **/commands**: Load agents/default/help.md for guidance → Display available support commands and usage information
-- **/help update**: Display update instructions → Show: "To update workflow system: cd workflow-system && git fetch --tags --force && git reset --hard latest && git checkout latest && ./workflow-system/setup.sh"
+- **/help update**: Display update instructions → Show: "To update workflow system: cd $(pwd | grep -o '.*workflow-system' | head -1) && git fetch --tags --force && git reset --hard latest && git checkout latest && ./workflow-system/setup.sh"
 
 ### Config Updates
 - **Any config update**: NEVER overwrite entire file → ONLY update specific fields → PRESERVE existing values
