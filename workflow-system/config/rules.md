@@ -54,12 +54,11 @@
 1. **Trigger Check**: ONLY execute when user explicitly runs 'start' command → Never trigger automatically from other requests
 2. **Check Prerequisites**: If no user_config.json exists or onboarding_completed=false → Load onboarding.md and follow complete workflow
 3. **Execute Onboarding**: Follow workflow-system/config/onboarding.md for complete onboarding process
-4. **Set version tracking**: Set last_version_check to current date (YYYY-MM-DD format) in user_config.json
-5. **Complete Onboarding - finish**: Finish conversation and do not continue
-6. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
+4. **Complete Onboarding - finish**: Finish conversation and do not continue
+5. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
-1. **Version check**: Check GitHub releases API for newer tags → If newer version available → Display "🔄 New version available! Run '/help update' for update instructions."
+1. **Version check**: Display "🔍 Checking for workflow system updates..." → Run `git describe --tags --exact-match HEAD 2>/dev/null || echo "development"` in workflow-system directory → Use WebFetch tool with URL `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` and prompt "Get the tag_name field from this GitHub API response" → If current version is "development" OR current version != latest version → Display "🔄 New version {latest_version} available! Run '/help update' for update instructions." → Otherwise → Display "✅ You're using the latest version!"
 2. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
 3. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md using workflow-system/context/workflow_state.md as template
 4. **Start measurements**: Record session start time → Initialize revision counters → Set Phase=ANALYZE, Status=READY
@@ -164,12 +163,9 @@
 
 ### Setup Check (All Sessions Except 'start' Command)
 1. **Check onboarding status**: Read user_config.json → If file missing or onboarding_completed=false → Display "⚠️ Workflow not initialized. Please run 'start' command first to set up your profile and project configuration." → Stop processing and wait for user to run start command
-2. **No automatic onboarding**: Never automatically start onboarding process - always require explicit 'start' command
+2. **Version check for non-workflow sessions**: Display "🔍 Checking for workflow system updates..." → Run `git describe --tags --exact-match HEAD 2>/dev/null || echo "development"` in workflow-system directory → Use WebFetch tool with URL `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` and prompt "Get the tag_name field from this GitHub API response" → If current version is "development" OR current version != latest version → Display "🔄 New version {latest_version} available! Run '/help update' for update instructions." → Otherwise → Display "✅ You're using the latest version!"
+3. **No automatic onboarding**: Never automatically start onboarding process - always require explicit 'start' command
 
-### Version Check (All Sessions)
-1. **Show checking message**: Display "🔍 Checking for workflow system updates..."
-2. **Check latest version**: Use GitHub API endpoint `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` → Parse "tag_name" field → Compare with current git tag using `git describe --tags --exact-match HEAD` (if fails, user has development version)
-3. **Update notification**: If newer version available → Display "🔄 New version {latest_version} available! Run '/help update' for update instructions." → If up to date → Display "✅ You're using the latest version!"
 
 ## Continuous Rules (Always Active)
 
