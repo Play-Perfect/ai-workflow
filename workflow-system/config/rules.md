@@ -57,9 +57,10 @@
 4. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
-1. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
-2. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md using workflow-system/context/workflow_state.md as template
-3. **Start measurements**: Record session start time → Initialize revision counters → Set Phase=ANALYZE, Status=READY
+1. **Version check**: Check user_config.json last_version_check → If empty or >7 days ago → Check GitHub releases API for newer tags → If newer version available → Display "🔄 New version {version} available! Update with: cd workflow-system && git fetch --tags && git checkout v{version} && ./workflow-system/setup.sh" → Update last_version_check to current date
+2. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
+3. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md using workflow-system/context/workflow_state.md as template
+4. **Start measurements**: Record session start time → Initialize revision counters → Set Phase=ANALYZE, Status=READY
 
 ### Phase: ANALYZE → Status: READY  
 1. **Start phase timing**: Record ANALYZE phase start time
@@ -156,6 +157,17 @@
 - **WAIT for user response**: STOP all processing until user provides response
 - **Process response**: Complete all response processing before next step
 - **No parallel agent loading**: Agents cannot start providing guidance while user questions are pending
+
+## Session Start Rules (Always Check First)
+
+### Setup Check (All Sessions)
+1. **Check onboarding status**: Read user_config.json → If file missing or onboarding_completed=false → Display "⚠️ Workflow not initialized. Please run 'start' command first to set up your profile and project configuration." → Stop processing until user runs start command
+
+### Version Check (All Sessions)
+1. **Check update frequency**: Read user_config.json last_version_check field
+2. **Weekly check**: If empty or >7 days ago → Use GitHub API to check latest release tag → Compare with current version
+3. **Update notification**: If newer version available → Display "🔄 New version {version} available! Update with: cd workflow-system && git fetch --tags && git checkout v{version} && ./workflow-system/setup.sh"  
+4. **Update timestamp**: Set last_version_check to current date in user_config.json
 
 ## Continuous Rules (Always Active)
 
