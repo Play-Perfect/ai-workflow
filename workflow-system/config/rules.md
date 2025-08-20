@@ -51,10 +51,11 @@
 ## Follow Below Automatic Rules
 
 ### Phase: ONBOARDING (Start Command Only)
-1. **Check Prerequisites**: Only when user calls start command → If no user_config.json exists or onboarding_completed=false → Load onboarding.md and follow complete workflow
-2. **Execute Onboarding**: Follow workflow-system/config/onboarding.md for complete onboarding process
-3. **Complete Onboarding - finish**: Finish conversation and do not continue
-4. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
+1. **Trigger Check**: ONLY execute when user explicitly runs 'start' command → Never trigger automatically from other requests
+2. **Check Prerequisites**: If no user_config.json exists or onboarding_completed=false → Load onboarding.md and follow complete workflow
+3. **Execute Onboarding**: Follow workflow-system/config/onboarding.md for complete onboarding process
+4. **Complete Onboarding - finish**: Finish conversation and do not continue
+5. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
 1. **Version check**: Check user_config.json last_version_check → If empty or >7 days ago → Check GitHub releases API for newer tags → If newer version available → Display "🔄 New version {version} available! Update with: cd workflow-system && git fetch --tags && git checkout v{version} && ./workflow-system/setup.sh" → Update last_version_check to current date
@@ -160,8 +161,9 @@
 
 ## Session Start Rules (Always Check First)
 
-### Setup Check (All Sessions)
-1. **Check onboarding status**: Read user_config.json → If file missing or onboarding_completed=false → Display "⚠️ Workflow not initialized. Please run 'start' command first to set up your profile and project configuration." → Stop processing until user runs start command
+### Setup Check (All Sessions Except 'start' Command)
+1. **Check onboarding status**: Read user_config.json → If file missing or onboarding_completed=false → Display "⚠️ Workflow not initialized. Please run 'start' command first to set up your profile and project configuration." → Stop processing and wait for user to run start command
+2. **No automatic onboarding**: Never automatically start onboarding process - always require explicit 'start' command
 
 ### Version Check (All Sessions)
 1. **Check update frequency**: Read user_config.json last_version_check field
