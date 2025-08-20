@@ -59,7 +59,7 @@
 6. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
-1. **Version check**: Check user_config.json last_version_check → If empty or >7 days ago → Check GitHub releases API for newer tags → If newer version available → Display "🔄 New version available! Update with: cd workflow-system && git fetch --tags && git checkout latest && ./workflow-system/setup.sh" → Update last_version_check to current date
+1. **Version check**: Check GitHub releases API for newer tags → If newer version available → Display "🔄 New version available! Run '/help update' for update instructions."
 2. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
 3. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md using workflow-system/context/workflow_state.md as template
 4. **Start measurements**: Record session start time → Initialize revision counters → Set Phase=ANALYZE, Status=READY
@@ -167,12 +167,9 @@
 2. **No automatic onboarding**: Never automatically start onboarding process - always require explicit 'start' command
 
 ### Version Check (All Sessions)
-1. **Check update frequency**: Read user_config.json last_version_check field (YYYY-MM-DD format)
-2. **Calculate days**: If empty OR current date minus last_version_check > 7 days → Proceed with check
-3. **Show checking message**: Display "🔍 Checking for workflow system updates..."
-4. **Weekly check**: Use GitHub API endpoint `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` → Parse "tag_name" field → Compare with current git tag using `git describe --tags --exact-match HEAD` (if fails, user has development version)
-5. **Update notification**: If newer version available → Display "🔄 New version {latest_version} available! Update with: cd workflow-system && git fetch --tags && git checkout latest && ./workflow-system/setup.sh" → If up to date → Display "✅ You're using the latest version!"
-6. **Update timestamp**: Set last_version_check to current date (YYYY-MM-DD format) in user_config.json
+1. **Show checking message**: Display "🔍 Checking for workflow system updates..."
+2. **Check latest version**: Use GitHub API endpoint `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` → Parse "tag_name" field → Compare with current git tag using `git describe --tags --exact-match HEAD` (if fails, user has development version)
+3. **Update notification**: If newer version available → Display "🔄 New version {latest_version} available! Run '/help update' for update instructions." → If up to date → Display "✅ You're using the latest version!"
 
 ## Continuous Rules (Always Active)
 
@@ -180,6 +177,7 @@
 - **/update-config [section] [content]**: Update specific section in ai-workflow-config/project_config.md → Preserve existing format and other sections
 - **/add-step [description]**: Load agents/default/add-step.md for guidance → Add custom step to current phase in workflow-system/config/rules.md → Use same format as existing steps
 - **/help** or **/commands**: Load agents/default/help.md for guidance → Display available support commands and usage information
+- **/help update**: Display update instructions → Show: "To update workflow system: cd workflow-system && git fetch --tags --force && git reset --hard origin/latest && ./workflow-system/setup.sh"
 
 ### Config Updates
 - **Any config update**: NEVER overwrite entire file → ONLY update specific fields → PRESERVE existing values
@@ -221,6 +219,7 @@
 - **/update-config [section] [content]**: Update ai-workflow-config/project_config.md with new conventions or standards
 - **/add-step [description]**: Add custom step to current workflow phase
 - **/help** or **/commands**: Display available support commands and their usage → Load agents/default/help.md for guidance
+- **/help update**: Display update instructions with exact commands
 
 ## Department Support
 - **dev**: Engineering workflows with technical focus
