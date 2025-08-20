@@ -80,6 +80,7 @@ cd workflow-system
 
 # Fetch latest tags and checkout latest stable version
 git fetch --tags
+git tag -d latest 2>/dev/null || true
 git checkout latest
 
 # Re-run setup to apply any new configurations
