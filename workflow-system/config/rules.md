@@ -58,7 +58,7 @@
 5. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
-1. **Version check**: Display "🔍 Checking for workflow system updates..." → Run `git describe --tags --exact-match HEAD 2>/dev/null || echo "development"` in workflow-system directory → Use WebFetch tool with URL `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` and prompt "Get the tag_name field from this GitHub API response" → If current version is "development" OR current version != latest version → Display "🔄 New version {latest_version} available! Run '/help update' for update instructions." → Otherwise → Display "✅ You're using the latest version!"
+1. **Version check**: Display "🔍 Checking for workflow system updates..." → Run `git describe --tags --exact-match HEAD 2>/dev/null || echo "development"` in workflow-system directory → Use WebFetch tool with URL `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` and prompt "Get the tag_name field from this GitHub API response" → If current version is "development" OR current version != latest version → Display "🔄 New version {latest_version} available! Update with: cd workflow-system && git fetch --tags --force && git checkout latest && ./workflow-system/setup.sh" → Otherwise → Display "✅ You're using the latest version!"
 2. **Workflow necessity check**: Only ask user if request seems simple/direct, otherwise continue with workflow → If user chooses to skip workflow → Set Phase=CONSTRUCT, Status=READY → Load agents/{department}/constructor.md directly
 3. **Session creation**: Create ai-workflow-config/sessions/workflow_state_YYYYMMDD_HHMMSS_feature.md using workflow-system/context/workflow_state.md as template
 4. **Start measurements**: Record session start time → Initialize revision counters → Set Phase=ANALYZE, Status=READY
@@ -163,7 +163,7 @@
 
 ### Setup Check (All Sessions Except 'start' Command)
 1. **Check onboarding status**: Read user_config.json → If file missing or onboarding_completed=false → Display "⚠️ Workflow not initialized. Please run 'start' command first to set up your profile and project configuration." → Stop processing and wait for user to run start command
-2. **Version check for non-workflow sessions**: Display "🔍 Checking for workflow system updates..." → Run `git describe --tags --exact-match HEAD 2>/dev/null || echo "development"` in workflow-system directory → Use WebFetch tool with URL `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` and prompt "Get the tag_name field from this GitHub API response" → If current version is "development" OR current version != latest version → Display "🔄 New version {latest_version} available! Run '/help update' for update instructions." → Otherwise → Display "✅ You're using the latest version!"
+2. **Version check for non-workflow sessions**: Display "🔍 Checking for workflow system updates..." → Run `git describe --tags --exact-match HEAD 2>/dev/null || echo "development"` in workflow-system directory → Use WebFetch tool with URL `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` and prompt "Get the tag_name field from this GitHub API response" → If current version is "development" OR current version != latest version → Display "🔄 New version {latest_version} available! Update with: cd workflow-system && git fetch --tags --force && git checkout latest && ./workflow-system/setup.sh" → Otherwise → Display "✅ You're using the latest version!"
 3. **No automatic onboarding**: Never automatically start onboarding process - always require explicit 'start' command
 
 
@@ -173,7 +173,7 @@
 - **/update-config [section] [content]**: Update specific section in ai-workflow-config/project_config.md → Preserve existing format and other sections
 - **/add-step [description]**: Load agents/default/add-step.md for guidance → Add custom step to current phase in workflow-system/config/rules.md → Use same format as existing steps
 - **/help** or **/commands**: Load agents/default/help.md for guidance → Display available support commands and usage information
-- **/help update**: Display update instructions → Show: "To update workflow system: cd workflow-system && git fetch --tags --force && git reset --hard origin/latest && ./workflow-system/setup.sh"
+- **/help update**: Display update instructions → Show: "To update workflow system: cd workflow-system && git fetch --tags --force && git checkout latest && ./workflow-system/setup.sh"
 
 ### Config Updates
 - **Any config update**: NEVER overwrite entire file → ONLY update specific fields → PRESERVE existing values
