@@ -78,10 +78,9 @@ To get the latest features and improvements, update your workflow system:
 # Navigate to your workflow system directory
 cd workflow-system
 
-# Fetch latest tags and checkout latest stable version
-git fetch --tags
-git tag -d latest 2>/dev/null || true
-git checkout latest
+# Fetch latest tags and reset to latest version
+git fetch --tags --force
+git reset --hard origin/latest
 
 # Re-run setup to apply any new configurations
 ./workflow-system/setup.sh
