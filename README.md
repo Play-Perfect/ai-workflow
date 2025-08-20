@@ -34,7 +34,7 @@ Transform your AI workflow into a smart, multi-team system supporting Engineerin
 Open your terminal/command prompt and navigate to your project folder, then copy and paste these 2 commands:
 
 ```bash
-git clone https://github.com/Play-Perfect/ai-workflow.git workflow-system
+git clone --branch v0.0.1 https://github.com/Play-Perfect/ai-workflow.git workflow-system
 ./workflow-system/workflow-system/setup.sh
 ```
 
