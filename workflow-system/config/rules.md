@@ -54,8 +54,9 @@
 1. **Trigger Check**: ONLY execute when user explicitly runs 'start' command → Never trigger automatically from other requests
 2. **Check Prerequisites**: If no user_config.json exists or onboarding_completed=false → Load onboarding.md and follow complete workflow
 3. **Execute Onboarding**: Follow workflow-system/config/onboarding.md for complete onboarding process
-4. **Complete Onboarding - finish**: Finish conversation and do not continue
-5. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
+4. **Set version tracking**: Set last_version_check to current date (YYYY-MM-DD format) in user_config.json
+5. **Complete Onboarding - finish**: Finish conversation and do not continue
+6. **Skip if already Complete**: If onboarding already completed → Skip to INIT phase
 
 ### Phase: INIT → Status: READY
 1. **Version check**: Check user_config.json last_version_check → If empty or >7 days ago → Check GitHub releases API for newer tags → If newer version available → Display "🔄 New version available! Update with: cd workflow-system && git fetch --tags && git checkout latest && ./workflow-system/setup.sh" → Update last_version_check to current date
@@ -166,10 +167,12 @@
 2. **No automatic onboarding**: Never automatically start onboarding process - always require explicit 'start' command
 
 ### Version Check (All Sessions)
-1. **Check update frequency**: Read user_config.json last_version_check field
-2. **Weekly check**: If empty or >7 days ago → Use GitHub API to check latest release tag (highest v*.*.* version) → Compare with current commit hash
-3. **Update notification**: If newer version available → Display "🔄 New version available! Update with: cd workflow-system && git fetch --tags && git checkout latest && ./workflow-system/setup.sh"  
-4. **Update timestamp**: Set last_version_check to current date in user_config.json
+1. **Check update frequency**: Read user_config.json last_version_check field (YYYY-MM-DD format)
+2. **Calculate days**: If empty OR current date minus last_version_check > 7 days → Proceed with check
+3. **Show checking message**: Display "🔍 Checking for workflow system updates..."
+4. **Weekly check**: Use GitHub API endpoint `https://api.github.com/repos/Play-Perfect/ai-workflow/releases/latest` → Parse "tag_name" field → Compare with current git tag using `git describe --tags --exact-match HEAD` (if fails, user has development version)
+5. **Update notification**: If newer version available → Display "🔄 New version {latest_version} available! Update with: cd workflow-system && git fetch --tags && git checkout latest && ./workflow-system/setup.sh" → If up to date → Display "✅ You're using the latest version!"
+6. **Update timestamp**: Set last_version_check to current date (YYYY-MM-DD format) in user_config.json
 
 ## Continuous Rules (Always Active)
 
