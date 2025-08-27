@@ -85,7 +85,7 @@
 4. **Set status**: Status = RUNNING
 
 ### Phase: BLUEPRINT → Status: RUNNING  
-1. **Plan creation**: Create detailed implementation plan in the session state in ## Plan section
+1. **Plan creation**: Create detailed implementation plan in the session state in ## Plan section → Update session file with plan
 2. **Present plan**: Show plan to user → Set Status = NEEDS_APPROVAL
 
 ### Phase: BLUEPRINT → Status: NEEDS_APPROVAL

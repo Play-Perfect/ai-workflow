@@ -2,6 +2,10 @@
 
 > ⚠️ **IMPORTANT**: This system is optimized for **Anthropic Claude models (Claude Sonnet Thinking 4 recommended)**. While it may work with other LLMs, best performance and feature compatibility are achieved with Claude models.
 
+## 📚 Documentation
+
+**[📖 DeepWiki Documentation](https://deepwiki.com/Play-Perfect/ai-workflow/1-ai-multi-agent-workflow-system-overview)** - Comprehensive system overview, detailed guides, and implementation examples for the AI Multi-Agent Workflow System.
+
 ## 📑 Table of Contents
 | Section | Description |
 |---------|-------------|
